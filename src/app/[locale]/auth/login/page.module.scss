@@ -1,0 +1,33 @@
+.login {
+  width: 100%;
+  &__title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: var(--sp-2);
+  }
+
+  &__subtitle {
+    max-width: 520px;
+    margin-bottom: var(--sp-6);
+    color: var(--color-muted);
+  }
+
+  &__forgot {
+    display: inline-block;
+    margin-top: var(--sp-4);
+    font-size: 14px;
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  &__signup {
+    margin-top: var(--sp-6);
+
+    .login__signupLink {
+      color: var(--color-primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+/* components/_button.scss */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius, 8px);
+  padding: var(--sp-3, 12px) var(--sp-6, 24px);
+  cursor: pointer;
+  transition: transform 0.02s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  &--primary {
+    background: var(--color-primary, #04A4C4);
+    color: var(--color-primary-contrast, #ffffff);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

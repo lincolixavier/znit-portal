@@ -1,0 +1,19 @@
+/* base/_typography.scss */
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--sp-3);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 var(--sp-4);
+  color: var(--color-muted);
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+

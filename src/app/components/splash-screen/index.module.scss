@@ -1,0 +1,21 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 70%, #e6f2ff, transparent 60%),
+              radial-gradient(circle at 80% 30%, #e6f2ff, transparent 60%),
+              #f8faff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  img {
+    max-width: 180px;
+    animation: fadeIn 0.6s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}

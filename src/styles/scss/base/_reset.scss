@@ -1,0 +1,70 @@
+/* reset.scss */
+
+/* Base box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2Remove margens padrão e ocupa 100% da altura */
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font smoothing e tipografia padrão */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/*  Fonte e cores globais (usando CSS vars) */
+body {
+  font-family: var(--font-sans, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif);
+  color: var(--color-text, #111827);
+  background-color: var(--color-bg, #ffffff);
+  line-height: 1.5;
+}
+
+/*  Links sem decoração e herdando cor */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*  Imagens responsivas */
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Botões e inputs herdando tipografia */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/*  Remove outline feio e deixa para focus styles customizados */
+:focus {
+  outline: none;
+}
+
+/*  Remove estilos padrão de lista */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

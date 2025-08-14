@@ -1,0 +1,31 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111827; /* gray-900 */
+  --color-muted: #6b7280; /* gray-500 */
+  --color-primary: #04A4C4;
+  --color-primary-contrast: #ffffff;
+  --color-border: #e5e7eb; /* gray-200 */
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --radius: 8px;
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --container-max: 1200px;
+
+  /* spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* breakpoints */
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}

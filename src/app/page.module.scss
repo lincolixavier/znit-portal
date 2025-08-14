@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  background: radial-gradient(circle at 20% 70%, #e6f2ff, transparent 60%),
+              radial-gradient(circle at 80% 30%, #e6f2ff, transparent 60%),
+              #f8faff;
+  height: 100vh;
+   align-items: center;
+  justify-content: center;
+
+}
