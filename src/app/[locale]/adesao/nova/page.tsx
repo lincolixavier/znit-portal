@@ -21,7 +21,7 @@ export default function AdesaoPage() {
 
       {/* CONTEÚDO */}
       <section className={styles["adesao-page__content"]}>
-        <h1 className={styles["adesao-page__title"]}>Adesão</h1>
+        
         <AdesaoForm />
       </section>
     </main>

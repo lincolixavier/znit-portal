@@ -1,0 +1,25 @@
+.adesao-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #006d66;
+  }
+
+  &__step-indicator {
+    background: var(--color-primary, #04A4C4);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -2,8 +2,11 @@
 "use client";
 
 import { useState } from "react";
-import Step1 from "./steps/Step1InfoPessoal";
+import StepPersonalInfo from "./steps/StepPersonalInfo";
+import StepAddress from "./steps/StepAddress";
+import StepContribution from "./steps/StepContribution";
 
+import styles from "./AdesaoForm.module.scss";
 
 export interface FormData {
   step1: object;
@@ -37,15 +40,19 @@ export default function AdesaoForm() {
     <div className="adesao-form">
       {/* Conteúdo */}
       <main className="adesao__content">
-        <div className="adesao__step-indicator">
-          <span className="adesao__step-text">Passo {currentStep} de 5</span>
+       <div className={styles["adesao-header"]}>
+          <h1 className={styles["adesao-header__title"]}>Adesão</h1>
+          <div className={styles["adesao-header__step-indicator"]}>
+            {currentStep}/5
+          </div>
         </div>
 
-        {currentStep === 1 && <Step1 onNext={handleNext} />}
-        {/* 
-        {currentStep === 2 && <Step2 onNext={handleNext} onBack={handleBack} />}
-        {currentStep === 3 && <Step3 onNext={handleNext} onBack={handleBack} />}
-        {currentStep === 4 && <Step4 onNext={handleNext} onBack={handleBack} />}
+        {currentStep === 1 && <StepPersonalInfo onNext={handleNext} />}
+       
+        {currentStep === 2 && <StepAddress onNext={handleNext} onBack={handleBack} />}
+         
+        {currentStep === 3 && <StepContribution onNext={handleNext} onBack={handleBack} />}
+        {/* {currentStep === 4 && <Step4 onNext={handleNext} onBack={handleBack} />}
         {currentStep === 5 && (
           <Step5
             onNext={(finalStepData) => {
