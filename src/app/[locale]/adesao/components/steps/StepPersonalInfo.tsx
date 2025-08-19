@@ -45,7 +45,7 @@ const schema: yup.ObjectSchema<DataStepPersonalInfo> = yup
   .required();
 
 export default function StepPersonalInfo({
-  onNext,
+ onNext,
 }: {
   onNext: (data: DataStepPersonalInfo) => void;
 }) {
@@ -87,7 +87,9 @@ export default function StepPersonalInfo({
       noValidate
     >
       {/* Informações pessoais */}
-      <h2 className={styles["section-title"]}> Informações pessoais</h2>
+      <div className={styles["section-title"]}>
+        <h2>Informações pessoais</h2>
+      </div>
 
       <div className={styles["row"]}>
         <div
@@ -207,10 +209,14 @@ export default function StepPersonalInfo({
       </div>
 
      {/* Representante legal */}
-      <h3 className={styles["section-title"]}>Representante legal</h3>
-      <p className={styles["upload-info"]}>
-        Essa Declaração de Consentimento somente pode ser dada por pelo menos um dos pais ou pelo responsável legal da criança.
-      </p>
+
+      <div className={styles["section-title"]}>
+        <h2>Representante legal</h2>
+        <p className={styles["info"]}>        
+          Essa Declaração de Consentimento somente pode ser dada por pelo menos um dos pais ou pelo responsável legal da criança.
+        </p>
+      </div>
+     
 
       <div className={styles["row"]}>
         <div
@@ -252,11 +258,14 @@ export default function StepPersonalInfo({
      
 
       {/* Upload de documento */}
-      <h3 className={styles["section-title"]}>Anexar documento</h3>
-      <p className={styles["upload-info"]}>
-        Os documentos pedidos são unicamente para confirmação de informações.
-        Formatos aceitos: PDF, JPG, PNG. Máximo 10mb.
-      </p>
+      <div className={styles["section-title"]}>
+        <h2>Anexar documento</h2>
+        <p>        
+          Os documentos pedidos são unicamente para confirmação de informações.
+          Formatos aceitos: PDF, JPG, PNG. Máximo 10mb.
+        </p>
+      </div>
+
       <label
         className={`${styles["upload"]} ${
           errors.documento ? styles["field--error"] : ""
@@ -275,12 +284,14 @@ export default function StepPersonalInfo({
       )}
 
       {/* Instituição */}
-      <h3 className={styles["section-title"]}>
-        Empregado em atividade ou aposentado
-      </h3>
+      <div className={styles["section-title"]}>
+        <h2>Empregado ou aposentado</h2>
+      </div>
+
+
       <div className={styles["row"]}>
           <div
-            className={`${styles["field"]} ${
+            className={`${styles["field"]} ${styles["w-50"]} ${
               errors.instituicao ? styles["field--error"] : ""
             }`}
           >
@@ -296,19 +307,16 @@ export default function StepPersonalInfo({
               </span>
             )}
           </div>
-      </div>
-
-    
+      </div>    
 
       {/* Dados do filiado */}
-      <h3 className={styles["section-title"]}>Dados do Filiado</h3>
       <div className={styles["row"]}>
         <div
-          className={`${styles["field"]} ${
+          className={`${styles["field"]} ${styles["w-100"]} ${
             errors.nomeFiliado ? styles["field--error"] : ""
           }`}
         >
-          <label>Nome completo do filiado</label>
+          <label>Nome completo</label>
           <input {...register("nomeFiliado")} placeholder="Digite seu nome completo" />
           {errors.nomeFiliado && (
             <span className={styles["error-text"]}>
@@ -317,8 +325,12 @@ export default function StepPersonalInfo({
           )}
         </div>
 
+      </div>
+
+      <div className={styles["row"]}>
+
         <div
-          className={`${styles["field"]} ${
+          className={`${styles["field"]} ${styles["w-50"]} ${
             errors.grauParentesco ? styles["field--error"] : ""
           }`}
         >
@@ -336,7 +348,7 @@ export default function StepPersonalInfo({
         </div>
 
         <div
-          className={`${styles["field"]} ${
+          className={`${styles["field"]} ${styles["w-50"]} ${
             errors.cpfFiliado ? styles["field--error"] : ""
           }`}
         >
@@ -349,6 +361,7 @@ export default function StepPersonalInfo({
           )}
         </div>
       </div>
+
 
       {/* ações */}
       <div className={styles["actions"]}>

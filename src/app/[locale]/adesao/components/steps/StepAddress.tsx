@@ -39,6 +39,7 @@ const estados = [
 ];
 
 export default function StepAddress({ onNext, onBack }: Props) {
+  
   const {
     register,
     handleSubmit,

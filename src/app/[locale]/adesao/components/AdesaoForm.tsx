@@ -5,16 +5,18 @@ import { useState } from "react";
 import StepPersonalInfo from "./steps/StepPersonalInfo";
 import StepAddress from "./steps/StepAddress";
 import StepContribution from "./steps/StepContribution";
+import StepSecurity from "./steps/StepSecurity";
+import StepSuccess from "./steps/StepSuccess";
 
 import styles from "./AdesaoForm.module.scss";
 
 export interface FormData {
   step1: object;
-
 }
 
 export default function AdesaoForm() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(5);
+
   const [data, setData] = useState<FormData>({
     step1: {},
   });
@@ -40,29 +42,34 @@ export default function AdesaoForm() {
     <div className="adesao-form">
       {/* Conteúdo */}
       <main className="adesao__content">
-       <div className={styles["adesao-header"]}>
-          <h1 className={styles["adesao-header__title"]}>Adesão</h1>
-          <div className={styles["adesao-header__step-indicator"]}>
-            {currentStep}/5
+        { currentStep !== 5 && (
+          <div className={styles["adesao-header"]}>
+            <h1 className={styles["adesao-header__title"]}>Adesão</h1>
+            <div className={styles["adesao-header__step-indicator"]}>
+              {currentStep}/5
+            </div>
           </div>
-        </div>
-
+        )}
         {currentStep === 1 && <StepPersonalInfo onNext={handleNext} />}
        
         {currentStep === 2 && <StepAddress onNext={handleNext} onBack={handleBack} />}
          
         {currentStep === 3 && <StepContribution onNext={handleNext} onBack={handleBack} />}
-        {/* {currentStep === 4 && <Step4 onNext={handleNext} onBack={handleBack} />}
-        {currentStep === 5 && (
-          <Step5
+    
+        {currentStep === 4   && (
+          <StepSecurity
             onNext={(finalStepData) => {
+              console.log("test")
               const allData = { ...data, step5: finalStepData };
               handleSubmitAll(allData);
+              setCurrentStep(5);
             }}
             onBack={handleBack}
           />
         )} 
-        */}
+        {currentStep === 5 && <StepSuccess />}
+
+       
       </main>
     </div>
   );

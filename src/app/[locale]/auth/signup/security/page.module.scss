@@ -23,13 +23,14 @@
 .otp {
   display: flex;
   gap: 12px;
-  margin: 24px 0 32px;
+  margin: 5px 0;
 }
 
 .otp__box {
   width: 48px;
-  height: 56px;
+  height: 48px;
   border: 1px solid #d1d5db;
+  color: #009ec2;
   border-radius: 4px;
   text-align: center;
   font-size: 24px;

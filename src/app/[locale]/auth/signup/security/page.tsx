@@ -21,6 +21,7 @@ export default function SecurityPage() {
             console.log("Reenviar código");
           }}
         />
+        
       </div>
     </>
   );
