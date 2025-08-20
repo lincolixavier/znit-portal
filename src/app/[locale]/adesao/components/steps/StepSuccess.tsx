@@ -22,7 +22,7 @@ export default function StepSuccess({ onDownload }: Props) {
           <Image 
             src="/images/confetii.png" 
             alt="Confetti decorativo" 
-            width={520} 
+            width={720} 
             height={120} 
             priority
           />
@@ -32,8 +32,8 @@ export default function StepSuccess({ onDownload }: Props) {
         <div className={styles.success__icon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="64"
-            height="64"
+            width="80"
+            height="80"
             fill="none"
             viewBox="0 0 24 24"
           >
@@ -47,13 +47,13 @@ export default function StepSuccess({ onDownload }: Props) {
             />
           </svg>
         </div>
-      </div>
-      {/* Text */}
+          {/* Text */}
       <h2 className={styles.success__title}>Agora é só aguardar!</h2>
       <p className={styles.success__subtitle}>
-        Este é um passo importante para garantir a segurança do seu futuro! Você
-        receberá um email com os próximos passos.
+        Este é um passo importante para garantir a segurança do seu futuro! Você receberá um email com os próximos passos.
       </p>
+      </div>
+    
 
       {/* Download Box */}
       <div className={styles.success__download}>

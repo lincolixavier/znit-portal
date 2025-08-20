@@ -9,13 +9,15 @@ import StepSecurity from "./steps/StepSecurity";
 import StepSuccess from "./steps/StepSuccess";
 
 import styles from "./AdesaoForm.module.scss";
+import { useRouter } from "next/navigation";
 
 export interface FormData {
   step1: object;
 }
 
 export default function AdesaoForm() {
-  const [currentStep, setCurrentStep] = useState(5);
+  const router = useRouter();
+  const [currentStep, setCurrentStep] = useState(1);
 
   const [data, setData] = useState<FormData>({
     step1: {},
@@ -36,6 +38,10 @@ export default function AdesaoForm() {
   const handleSubmitAll = (finalData: any) => {
     console.log("Enviando dados para o backend:", finalData);
     // Ex: await api.post("/adesao", finalData);
+  };
+
+  const downloadDocument = () => {
+    router.push("comprovante")
   };
 
   return (
@@ -67,7 +73,7 @@ export default function AdesaoForm() {
             onBack={handleBack}
           />
         )} 
-        {currentStep === 5 && <StepSuccess />}
+        {currentStep === 5 && <StepSuccess onDownload={downloadDocument} />}
 
        
       </main>

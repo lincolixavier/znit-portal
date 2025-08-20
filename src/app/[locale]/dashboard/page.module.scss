@@ -1,0 +1,229 @@
+.home {
+  color: #0f172a;
+
+  /* Header */
+  &__header { margin-bottom: 18px; }
+  &__title {
+    font-size: 32px;
+    font-weight: 400;
+    color: #005965; /* verde-azulado mais escuro */
+    margin: 0 0 6px;
+  }
+  &__title--strong { font-weight: 800; }
+  &__updated { color: #6b7280; font-size: 14px; }
+
+  /* Top grid: reminder + callout */
+  &__gridTop {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Métricas */
+  &__stats {
+    display: grid;
+    width: 57.5%;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 18px;
+
+    @media (max-width: 780px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* Card base */
+.card {
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 0 rgba(10, 10, 10, 0.02);
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  &__text {
+    color: #4b5563;
+    line-height: 1.4;
+    margin: 6px 0 14px;
+    max-width: 560px;
+  }
+
+  &__link {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: #0ea5c0;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover { color: #0b8ea7; }
+  }
+
+
+}
+
+/* Progress ring (25%) */
+.ring {
+  --size: 48px;
+  --track: #eee;
+  --accent: #f59e0b;
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background:
+    conic-gradient(var(--accent) 0 90deg, var(--track) 90deg 360deg); /* 25% = 90deg */
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  &__value {
+    position: relative;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 700;
+  }
+}
+
+/* Callout lateral */
+.callout {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__text { color: #374151;   width:  72%; }
+  &__cta {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    background:var(--color-primary);
+    color: #fff;
+    border: none;
+    font-weight: 400;
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    &:hover { background: #0b8ea7; }
+  }
+ 
+}
+
+/* Stat cards */
+.stat {
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  &__icon {
+    display: block;
+    
+  }
+  &__body { display: grid; gap: 6px; width: 100%; }
+  &__label { color: #4b5563; }
+  &__value { font-size: 22px; font-weight: 800; color: #0f172a; }
+}
+
+/* Movimentações */
+.moves {
+  margin-top: 16px;
+      width: 57.5%;
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 18px 0 10px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    color: #0ea5c0;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover { color: #0b8ea7; }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #e6e9ef;
+    border-radius: 10px;
+  }
+}
+
+.move {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eef1f6;
+
+  &:last-child { border-bottom: 0; }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__dot {
+    color: #94a3b8;
+    font-size: 16px;
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+
+  &__name { font-weight: 700; }
+  &__date { font-size: 12px; color: #6b7280; }
+
+  &__amount {
+    font-weight: 700;
+    color: #0f172a;
+  }
+}
