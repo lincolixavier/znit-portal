@@ -39,9 +39,9 @@ export default function HomePage() {
       {/* Saudação */}
       <header className={styles.home__header}>
         <h1 className={styles.home__title}>
-          Olá, <span className={styles["home__title--strong"]}>Marco!</span> Bom te ver por aqui.
+          Olá, <span className={styles["home__title--strong"]}>Lincoli!</span> Bom te ver por aqui.
         </h1>
-        <p className={styles.home__updated}>Última atualização: 24/10/2024</p>
+        <p className={styles.home__updated}>Última atualização: 21/08/2025</p>
       </header>
 
       {/* Linha superior: lembrete + callout */}

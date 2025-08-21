@@ -22,10 +22,10 @@ export default function LoginPage() {
       // const res = await fetch("/api/login", { method: "POST", body: JSON.stringify({ cpf, password }) });
 
       await new Promise((resolve) => setTimeout(resolve, 1000)); // mock delay
-      alert(`Login realizado com CPF: ${cpf}`);
+      
 
       // Redirecionamento após sucesso
-      window.location.href = "/dashboard"; 
+      window.location.href = "/pt_BR/dashboard"; 
     } catch (err) {
       alert("Erro ao fazer login");
     } finally {

@@ -38,7 +38,7 @@ export default function Header({ collapsed, onToggle }: Props) {
             <path d="M4 20c1.6-4.2 14.4-4.2 16 0" fill="#94A3B8" />
           </svg>
         </div>
-        <span className={styles.header__name}>Marco</span>
+        <span className={styles.header__name}>Lincoli</span>
         <svg
           className={styles.header__chevron}
           width="12"

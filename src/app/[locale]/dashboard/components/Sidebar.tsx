@@ -6,8 +6,8 @@ import clsx from "clsx";
 import styles from "../layout.module.scss";
 
 const items = [
-  { href: "/app", label: "Início", icon: "home" },
-  { href: "/app/extrato", label: "Extrato", icon: "receipt" },
+  { href: "/pt_BR/dashboard", label: "Início", icon: "home" },
+  { href: "/pt_BR/dashboard/extrato", label: "Extrato", icon: "receipt" },
   { href: "/app/pessoal", label: "Informações pessoais", icon: "user" },
   { href: "/app/documentos", label: "Documentos", icon: "doc" },
 ];
