@@ -3,8 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import InputCPF from "@/app/components/InputCPF";
+import { useRouter } from "next/navigation";
+import { useI18n } from "@/lib/i18n";
 
 export default function SignUpForm() {
+  const { translator } = useI18n();
+  const t = translator;
+  const router = useRouter();
   const [cpfFormatted, setCpfFormatted] = useState("");
   const [cpfDigits, setCpfDigits] = useState("");
   const [isCpfValid, setIsCpfValid] = useState(false);
@@ -12,13 +17,15 @@ export default function SignUpForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`CPF enviado: ${cpfFormatted} (somente dígitos: ${cpfDigits})`);
+    //alert(`CPF enviado: ${cpfFormatted} (somente dígitos: ${cpfDigits})`);
+
+    router.push("/pt/auth/signup/create-password")
   };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       <label htmlFor="cpf" className="form__label">
-        CPF
+        {t.auth.signup.email()}
       </label>
       <InputCPF
         name="cpf"
@@ -39,9 +46,9 @@ export default function SignUpForm() {
           required
         />
         <label htmlFor="terms">
-          Declaro que li e aceito os{" "}
+          {t.auth.signup.terms()}{" "}
           <Link href="#" className="link">
-            Termos e Condições.
+            {t.auth.signup.privacy()}
           </Link>
         </label>
       </div>
@@ -51,7 +58,7 @@ export default function SignUpForm() {
         type="submit"
         disabled={!accepted || !isCpfValid}
       >
-        Continuar
+        {t.enrollment.actions.continue()}
       </button>
     </form>
   );

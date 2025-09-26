@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useI18n } from "@/lib/i18n";
 import styles from "./page.module.scss";
 
 function PigIcon() {
@@ -34,14 +35,17 @@ function TrendIcon() {
 }
 
 export default function HomePage() {
+  const { translator } = useI18n();
+  const t = translator;
+
   return (
     <div className={styles.home}>
       {/* Saudação */}
       <header className={styles.home__header}>
         <h1 className={styles.home__title}>
-          Olá, <span className={styles["home__title--strong"]}>Lincoli!</span> Bom te ver por aqui.
+          {t.dashboard.greeting({ name: 'João' })}
         </h1>
-        <p className={styles.home__updated}>Última atualização: 21/08/2025</p>
+        <p className={styles.home__updated}>{t.dashboard.lastUpdate({ date: '21/08/2025' })}</p>
       </header>
 
       {/* Linha superior: lembrete + callout */}
@@ -49,17 +53,16 @@ export default function HomePage() {
         {/* Card: lembrete forma de pagamento */}
         <section className={`${styles.card} ${styles["card--reminder"]}`}>
           <div className={styles.card__header}>
-            <h2 className={styles.card__title}>Cadastre sua forma de pagamento</h2>
-            <div className={styles.ring} aria-label="25% concluído">
+            <h2 className={styles.card__title}>{t.dashboard.paymentMethod.title()}</h2>
+            <div className={styles.ring} aria-label={t.dashboard.paymentMethod.progress({ percentage: 25 })}>
               <span className={styles.ring__value}>25%</span>
             </div>
           </div>
           <p className={styles.card__text}>
-            Para começar a investir no seu futuro, é necessário informar a forma de pagamento.
-            Sem esse cadastro, suas contribuições não poderão ser processadas.
+            {t.dashboard.paymentMethod.description()}
           </p>
           <button className={styles.card__link} type="button">
-            Adicionar forma de pagamento
+            {t.dashboard.paymentMethod.button()}
           </button>
         </section>
 
@@ -68,12 +71,12 @@ export default function HomePage() {
           
           <div className={styles.callout}>
             <div className={styles.callout__text}>
-              <p >
-              Faça uma contribuição extra e fortaleça seu futuro financeiro.
-            </p>
-            <button className={styles.callout__cta} type="button">
-              Contribuir agora <span aria-hidden>→</span>
-            </button>
+              <p>
+                {t.dashboard.extraContribution.title()}
+              </p>
+              <button className={styles.callout__cta} type="button">
+                {t.dashboard.extraContribution.button()} <span aria-hidden>→</span>
+              </button>
             </div>
             
             <Image src="/images/savings.svg" width={100} height={140} priority alt="Savings" />
@@ -90,7 +93,7 @@ export default function HomePage() {
             <Image src="/images/savings.png" width={40} height={40} priority alt="Savings" />
           </div>
           <div className={styles.stat__body}>
-            <p className={styles.stat__label}>Saldo total acumulado</p>
+            <p className={styles.stat__label}>{t.dashboard.stats.totalBalance()}</p>
             <p className={styles.stat__value}>R$ 25.468,23</p>
           </div>
         </article>
@@ -98,7 +101,7 @@ export default function HomePage() {
         <article className={styles.stat}>
           <Image src="/images/grow.png" width={40} height={40} priority alt="Grow" />
           <div className={styles.stat__body}>
-            <p className={styles.stat__label}>Rendimento acumulado</p>
+            <p className={styles.stat__label}>{t.dashboard.stats.accumulatedReturn()}</p>
             <p className={styles.stat__value}>25,5%</p>
           </div>
         </article>
@@ -107,8 +110,8 @@ export default function HomePage() {
       {/* Últimas movimentações */}
       <section className={styles.moves}>
         <header className={styles.moves__head}>
-          <h3 className={styles.moves__title}>Últimas movimentações</h3>
-          <button className={styles.moves__link} type="button">Ver tudo</button>
+          <h3 className={styles.moves__title}>{t.dashboard.movements.title()}</h3>
+          <button className={styles.moves__link} type="button">{t.dashboard.movements.viewAll()}</button>
         </header>
 
         <ul className={styles.moves__list}>
@@ -116,8 +119,8 @@ export default function HomePage() {
             <div className={styles.move__left}>
               <span className={styles.move__dot} aria-hidden>●</span>
               <div>
-                <p className={styles.move__name}>Contribuição</p>
-                <p className={styles.move__date}>12 de Agosto 2024</p>
+                <p className={styles.move__name}>{t.dashboard.movements.contribution()}</p>
+                <p className={styles.move__date}>{t.dashboard.movements.date({ day: '12', month: 'Agosto', year: '2024' })}</p>
               </div>
             </div>
             <div className={styles.move__amount}>+R$ 50,00</div>
@@ -127,8 +130,8 @@ export default function HomePage() {
             <div className={styles.move__left}>
               <span className={styles.move__dot} aria-hidden>●</span>
               <div>
-                <p className={styles.move__name}>Contribuição extra</p>
-                <p className={styles.move__date}>12 de Agosto 2024</p>
+                <p className={styles.move__name}>{t.dashboard.movements.extraContribution()}</p>
+                <p className={styles.move__date}>{t.dashboard.movements.date({ day: '12', month: 'Agosto', year: '2024' })}</p>
               </div>
             </div>
             <div className={styles.move__amount}>+R$ 3.000,00</div>
@@ -138,8 +141,8 @@ export default function HomePage() {
             <div className={styles.move__left}>
               <span className={styles.move__dot} aria-hidden>●</span>
               <div>
-                <p className={styles.move__name}>Rendimento mensal</p>
-                <p className={styles.move__date}>12 de Agosto 2024</p>
+                <p className={styles.move__name}>{t.dashboard.movements.monthlyReturn()}</p>
+                <p className={styles.move__date}>{t.dashboard.movements.date({ day: '12', month: 'Agosto', year: '2024' })}</p>
               </div>
             </div>
             <div className={styles.move__amount}>+R$ 1,26</div>

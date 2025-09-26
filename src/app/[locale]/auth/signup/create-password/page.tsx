@@ -3,17 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.scss";
+import { useRouter } from "next/navigation";
 
 export default function CreatePasswordPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const router = useRouter();
 
-  const passwordValid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]).{8,}$/.test(
-    password
-  );
-  const passwordsMatch = password === confirm;
+  // Validação progressiva da senha
+  const passwordChecks = {
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /\d/.test(password),
+    special: /[!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]/.test(password)
+  };
+
+  const passwordValid = Object.values(passwordChecks).every(Boolean);
+  const passwordsMatch = password === confirm && password.length > 0;
+  
+  // Calcular progresso da senha (0-100%)
+  const passwordProgress = Object.values(passwordChecks).filter(Boolean).length * 20;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +61,7 @@ export default function CreatePasswordPage() {
             onClick={() => setShowPassword((prev) => !prev)}
             aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
           >
-            👁
+            {showPassword ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
 
@@ -72,28 +84,50 @@ export default function CreatePasswordPage() {
             onClick={() => setShowConfirm((prev) => !prev)}
             aria-label={showConfirm ? "Ocultar senha" : "Mostrar senha"}
           >
-            👁
+            {showConfirm ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
 
-        {/* Barra de validação */}
+        {/* Barra de validação progressiva */}
         <div className={styles.strengthBar}>
           <div
             className={`${styles.strengthFill} ${
               passwordValid ? styles.valid : styles.invalid
             }`}
-            style={{ width: password.length > 0 ? `${(password.length / 12) * 100}%` : "0%" }}
+            style={{ width: `${passwordProgress}%` }}
           />
         </div>
 
-        {/* Mensagem de erro */}
-        {!passwordValid && password.length > 0 && (
-          <p className={styles.error}>
-            Sua senha deve conter números, letras, pelo menos uma letra maiúscula e um caractere especial.
-          </p>
+        {/* Lista de requisitos da senha 
+        {password.length > 0 && (
+          <div className={styles.passwordRequirements}>
+            <div className={`${styles.requirement} ${passwordChecks.length ? styles.valid : styles.invalid}`}>
+              {passwordChecks.length ? "✓" : "✗"} Pelo menos 8 caracteres
+            </div>
+            <div className={`${styles.requirement} ${passwordChecks.uppercase ? styles.valid : styles.invalid}`}>
+              {passwordChecks.uppercase ? "✓" : "✗"} Uma letra maiúscula
+            </div>
+            <div className={`${styles.requirement} ${passwordChecks.lowercase ? styles.valid : styles.invalid}`}>
+              {passwordChecks.lowercase ? "✓" : "✗"} Uma letra minúscula
+            </div>
+            <div className={`${styles.requirement} ${passwordChecks.number ? styles.valid : styles.invalid}`}>
+              {passwordChecks.number ? "✓" : "✗"} Um número
+            </div>
+            <div className={`${styles.requirement} ${passwordChecks.special ? styles.valid : styles.invalid}`}>
+              {passwordChecks.special ? "✓" : "✗"} Um caractere especial
+            </div>
+          </div>
+        )}*/}
+        
+        {/* Validação de senhas iguais */}
+        {confirm.length > 0 && (
+          <div className={`${styles.passwordMatch} ${passwordsMatch ? styles.valid : styles.invalid}`}>
+            {passwordsMatch ? "✓" : "Senhas não coincidem"}
+          </div>
         )}
 
         <button
+          onClick={()=>{router.push("/pt/dashboard")}}
           className="btn btn--primary"
           type="submit"
           disabled={!passwordValid || !passwordsMatch}
@@ -103,7 +137,7 @@ export default function CreatePasswordPage() {
       </form>
 
       <p className={styles.auth__link}>
-        <Link href="/login">Já tem uma conta? Clique aqui!</Link>
+        <Link href="/pt/auth/login">Já tem uma conta? Clique aqui!</Link>
       </p>
     </div>
   );

@@ -6,9 +6,9 @@ import styles from "./page.module.scss";
 
 export default function AdesaoAprovadaPage() {
   // /adesao-aprovada?nome=Marcos&protocolo=999999&link=/auth/signup
-  const nome = "Marcos";
-  const protocolo = "999999";
-  const portalUrl = "/auth/signup"; 
+  const nome = "João da Silva";
+  const protocolo = "512093";
+  const portalUrl = "/pt/auth/signup"; 
 
   return (
     <div className={styles.page}>

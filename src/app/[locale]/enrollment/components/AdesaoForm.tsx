@@ -7,6 +7,7 @@ import StepAddress from "./steps/StepAddress";
 import StepContribution from "./steps/StepContribution";
 import StepSecurity from "./steps/StepSecurity";
 import StepSuccess from "./steps/StepSuccess";
+import { useI18n } from "@/lib/i18n";
 
 import styles from "./AdesaoForm.module.scss";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,8 @@ export interface FormData {
 }
 
 export default function AdesaoForm() {
+  const { translator } = useI18n();
+  const t = translator;
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -41,7 +44,7 @@ export default function AdesaoForm() {
   };
 
   const downloadDocument = () => {
-    router.push("comprovante")
+    router.push("confirmation")
   };
 
   return (
@@ -50,9 +53,9 @@ export default function AdesaoForm() {
       <main className="adesao__content">
         { currentStep !== 5 && (
           <div className={styles["adesao-header"]}>
-            <h1 className={styles["adesao-header__title"]}>Adesão</h1>
+            <h1 className={styles["adesao-header__title"]}>{t.enrollment.title()}</h1>
             <div className={styles["adesao-header__step-indicator"]}>
-              {currentStep}/5
+              {t.enrollment.stepIndicator({ current: currentStep })}
             </div>
           </div>
         )}

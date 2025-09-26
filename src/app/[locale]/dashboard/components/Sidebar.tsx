@@ -2,15 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useI18n } from "@/lib/i18n";
 import clsx from "clsx";
 import styles from "../layout.module.scss";
-
-const items = [
-  { href: "/pt_BR/dashboard", label: "Início", icon: "home" },
-  { href: "/pt_BR/dashboard/extrato", label: "Extrato", icon: "receipt" },
-  { href: "/app/pessoal", label: "Informações pessoais", icon: "user" },
-  { href: "/app/documentos", label: "Documentos", icon: "doc" },
-];
 
 function Icon({ name }: { name: string }) {
   switch (name) {
@@ -65,7 +59,16 @@ function Icon({ name }: { name: string }) {
 }
 
 export default function Sidebar({ collapsed }: { collapsed: boolean }) {
+  const { translator, locale } = useI18n();
+  const t = translator;
   const pathname = usePathname();
+
+  const items = [
+    { href: `/${locale}/dashboard`, label: t.dashboard.navigation.home(), icon: "home" },
+    { href: `/${locale}/dashboard/account-statement`, label: t.dashboard.navigation.statement(), icon: "receipt" },
+    { href: `/${locale}/dashboard/personal-info`, label: t.dashboard.navigation.personalInfo(), icon: "user" },
+    { href: `/${locale}/dashboard/documents`, label: t.dashboard.navigation.documents(), icon: "doc" },
+  ];
 
   return (
     <aside

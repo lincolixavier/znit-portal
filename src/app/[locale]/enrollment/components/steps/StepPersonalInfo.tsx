@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useI18n } from "@/lib/i18n";
 import styles from "./steps.module.scss";
 
 interface DataStepPersonalInfo {
@@ -21,26 +22,26 @@ interface DataStepPersonalInfo {
 }
 
 // TIPAR o schema como ObjectSchema<DataStepPersonalInfo>
-const schema: yup.ObjectSchema<DataStepPersonalInfo> = yup
+const createSchema = (t: any) => yup
   .object({
-    nomeCompleto: yup.string().required("Nome é obrigatório"),
-    cpf: yup.string().required("CPF é obrigatório"),
-    dataNascimento: yup.string().required("Data de nascimento é obrigatória"),
-    genero: yup.string().required("Selecione um gênero"),
-    estadoCivil: yup.string().required("Selecione um estado civil"),
-    email: yup.string().email("Email inválido").required("Email é obrigatório"),
-    telefone: yup.string().required("Telefone é obrigatório"),
+    nomeCompleto: yup.string().required(t.enrollment.validation.required()),
+    cpf: yup.string().required(t.enrollment.validation.required()),
+    dataNascimento: yup.string().required(t.enrollment.validation.required()),
+    genero: yup.string().required(t.enrollment.validation.required()),
+    estadoCivil: yup.string().required(t.enrollment.validation.required()),
+    email: yup.string().email(t.enrollment.validation.invalidEmail()).required(t.enrollment.validation.required()),
+    telefone: yup.string().required(t.enrollment.validation.required()),
     documento: yup
       .mixed<FileList>(),
       // .test(
       //   "required",
-      //   "Anexe um documento",
+      //   t.enrollment.validation.required'),
       //   (value): value is FileList => !!value && value.length > 0
       // ),
-    instituicao: yup.string().required("Selecione a instituição"),
-    nomeFiliado: yup.string().required("Nome do filiado é obrigatório"),
-    grauParentesco: yup.string().required("Selecione o grau de parentesco"),
-    cpfFiliado: yup.string().required("CPF do filiado é obrigatório"),
+    instituicao: yup.string().required(t.enrollment.validation.required()),
+    nomeFiliado: yup.string().required(t.enrollment.validation.required()),
+    grauParentesco: yup.string().required(t.enrollment.validation.required()),
+    cpfFiliado: yup.string().required(t.enrollment.validation.required()),
   })
   .required();
 
@@ -49,13 +50,17 @@ export default function StepPersonalInfo({
 }: {
   onNext: (data: DataStepPersonalInfo) => void;
 }) {
+  const { translator } = useI18n();
+  const t = translator;
+  const schema = createSchema(t);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<DataStepPersonalInfo>({
     // Forçar o genérico no resolver evita o erro de tipo
-    resolver: yupResolver<DataStepPersonalInfo>(schema),
+    resolver: yupResolver(schema),
     mode: "onSubmit",
     defaultValues:{
       nomeCompleto: "João da Silva",
@@ -88,7 +93,7 @@ export default function StepPersonalInfo({
     >
       {/* Informações pessoais */}
       <div className={styles["section-title"]}>
-        <h2>Informações pessoais</h2>
+        <h2>{t.enrollment.personalInfo.title()}</h2>
       </div>
 
       <div className={styles["row"]}>
@@ -97,10 +102,10 @@ export default function StepPersonalInfo({
             errors.nomeCompleto ? styles["field--error"] : ""
           }`}
         >
-          <label>Nome completo</label>
+          <label>{t.enrollment.personalInfo.fullName()}</label>
           <input
             {...register("nomeCompleto")}
-            placeholder="Digite seu nome completo"
+            placeholder={t.enrollment.personalInfo.fullNamePlaceholder()}
           />
           {errors.nomeCompleto && (
             <span className={styles["error-text"]}>
@@ -116,8 +121,8 @@ export default function StepPersonalInfo({
             errors.cpf ? styles["field--error"] : ""
           }`}
         >
-          <label>CPF</label>
-          <input {...register("cpf")} placeholder="Digite seu CPF" />
+          <label>{t.enrollment.personalInfo.cpf()}</label>
+          <input {...register("cpf")} placeholder={t.enrollment.personalInfo.cpfPlaceholder()} />
           {errors.cpf && (
             <span className={styles["error-text"]}>{errors.cpf.message}</span>
           )}
@@ -128,8 +133,8 @@ export default function StepPersonalInfo({
             errors.dataNascimento ? styles["field--error"] : ""
           }`}
         >
-          <label>Data de nascimento</label>
-          <input {...register("dataNascimento")} placeholder="00/00/0000" />
+          <label>{t.enrollment.personalInfo.birthDate()}</label>
+          <input {...register("dataNascimento")} placeholder={t.enrollment.personalInfo.birthDatePlaceholder()} />
           {errors.dataNascimento && (
             <span className={styles["error-text"]}>
               {errors.dataNascimento.message}
@@ -144,11 +149,11 @@ export default function StepPersonalInfo({
             errors.genero ? styles["field--error"] : ""
           }`}
         >
-          <label>Gênero</label>
+          <label>{t.enrollment.personalInfo.gender()}</label>
           <select {...register("genero")}>
-            <option value="">Selecione</option>
-            <option value="M">Masculino</option>
-            <option value="F">Feminino</option>
+            <option value="">{t.enrollment.personalInfo.selectGender()}</option>
+            <option value="M">{t.enrollment.personalInfo.male()}</option>
+            <option value="F">{t.enrollment.personalInfo.female()}</option>
           </select>
           {errors.genero && (
             <span className={styles["error-text"]}>
@@ -162,11 +167,11 @@ export default function StepPersonalInfo({
             errors.estadoCivil ? styles["field--error"] : ""
           }`}
         >
-          <label>Estado civil</label>
+          <label>{t.enrollment.personalInfo.maritalStatus()}</label>
           <select {...register("estadoCivil")}>
-            <option value="">Selecione</option>
-            <option value="solteiro">Solteiro</option>
-            <option value="casado">Casado</option>
+            <option value="">{t.enrollment.personalInfo.selectMaritalStatus()}</option>
+            <option value="solteiro">{t.enrollment.personalInfo.single()}</option>
+            <option value="casado">{t.enrollment.personalInfo.married()}</option>
           </select>
           {errors.estadoCivil && (
             <span className={styles["error-text"]}>
@@ -183,8 +188,8 @@ export default function StepPersonalInfo({
             errors.email ? styles["field--error"] : ""
           }`}
         >
-          <label>Email</label>
-          <input {...register("email")} placeholder="Digite seu email" />
+          <label>{t.enrollment.personalInfo.email()}</label>
+          <input {...register("email")} placeholder={t.enrollment.personalInfo.emailPlaceholder()} />
           {errors.email && (
             <span className={styles["error-text"]}>{errors.email.message}</span>
           )}
@@ -196,8 +201,8 @@ export default function StepPersonalInfo({
             errors.telefone ? styles["field--error"] : ""
           }`}
         >
-          <label>Telefone celular</label>
-          <input {...register("telefone")} placeholder="(00) 0000-0000" />
+          <label>{t.enrollment.personalInfo.phone()}</label>
+          <input {...register("telefone")} placeholder={t.enrollment.personalInfo.phonePlaceholder()} />
           {errors.telefone && (
             <span className={styles["error-text"]}>
               {errors.telefone.message}
@@ -366,7 +371,7 @@ export default function StepPersonalInfo({
       {/* ações */}
       <div className={styles["actions"]}>
         <button className={styles["button"]}>
-          Continuar
+          {t.enrollment.actions.continue()}
         </button>
       </div>
     </form>

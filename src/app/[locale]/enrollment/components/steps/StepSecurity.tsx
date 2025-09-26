@@ -21,7 +21,7 @@ export default function StepSecurity({ onNext, onBack }: Props) {
   return (
      <div className={styles["adesao-step"]}>
         <h1 className={styles["title"]}>Etapa de segurança</h1>
-        <p className={styles["subtitle"]}>Enviamos um código para seu email@exemplo.com.</p>
+        <p className={styles["subtitle"]}>Enviamos um código para seu email: <strong>joao.silva@example.com</strong></p>
 
         <SecurityCode
           length={6}

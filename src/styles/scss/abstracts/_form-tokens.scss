@@ -1,0 +1,103 @@
+/**
+ * Design Tokens para Formulários
+ * 
+ * Este arquivo define tokens globais para manter consistência
+ * nos espaçamentos e dimensões dos formulários.
+ */
+
+:root {
+  /* Espaçamentos entre elementos */
+  --form-field-gap: var(--sp-4); /* 16px - espaçamento entre campos */
+  --form-section-gap: var(--sp-6); /* 24px - espaçamento entre seções */
+  --form-label-margin: var(--sp-1); /* 4px - margem entre label e input */
+  
+  /* Dimensões dos inputs */
+  --form-input-height: 55px; /* altura padrão dos inputs */
+  --form-input-padding: var(--sp-3) var(--sp-4); /* 12px 16px - padding interno */
+  
+  /* Dimensões dos botões */
+  --form-button-height: var(--form-input-height); /* altura igual aos inputs */
+  --form-button-padding: 0 var(--sp-6); /* 0 24px - padding horizontal do botão */
+  
+  /* Divisores */
+  --form-divider-margin: var(--sp-4) 0 var(--sp-2); /* 16px 0 8px - margem do divisor */
+}
+
+/**
+ * Classes utilitárias para formulários
+ */
+.form-field {
+  display: grid;
+  gap: var(--form-label-margin);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: var(--form-label-margin);
+}
+
+.form-input {
+  width: 100%;
+  height: var(--form-input-height);
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: var(--form-input-padding);
+  background: #fff;
+  font-size: 14px;
+  color: #111827;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(4, 164, 196, 0.1);
+  }
+  
+  &::placeholder {
+    color: #9ca3af;
+  }
+}
+
+.form-button {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border: none;
+  height: var(--form-button-height);
+  padding: var(--form-button-padding);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color .2s ease;
+  
+  &:hover {
+    background: #038aa8;
+  }
+  
+  &:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--form-field-gap);
+  
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-section {
+  margin-bottom: var(--form-section-gap);
+}
+
+.form-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--form-divider-margin);
+}

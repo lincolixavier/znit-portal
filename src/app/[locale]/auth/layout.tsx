@@ -28,6 +28,10 @@ export default function AuthLayout({
               alt="Capital Prev"
               width={103}
               height={68}
+              priority
+              onError={(e) => {
+                console.error('Logo failed to load:', e);
+              }}
             />
           </div>
           {children}

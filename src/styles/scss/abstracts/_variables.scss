@@ -25,6 +25,16 @@
   --sp-12: 48px;
   --sp-16: 64px;
 
+  /* form spacing tokens */
+  --form-field-gap: var(--sp-4); /* 16px - espaçamento entre campos */
+  --form-section-gap: var(--sp-6); /* 24px - espaçamento entre seções */
+  --form-label-margin: var(--sp-1); /* 4px - margem entre label e input */
+  --form-input-height: 55px; /* altura padrão dos inputs */
+  --form-input-padding: var(--sp-3) var(--sp-4); /* 12px 16px - padding interno */
+  --form-button-height: var(--form-input-height); /* altura igual aos inputs */
+  --form-button-padding: 0 var(--sp-6); /* 0 24px - padding horizontal do botão */
+  --form-divider-margin: var(--sp-4) 0 var(--sp-2); /* 16px 0 8px - margem do divisor */
+
   /* breakpoints */
   --bp-md: 768px;
   --bp-lg: 1024px;

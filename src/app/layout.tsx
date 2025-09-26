@@ -1,8 +1,6 @@
-"use client";
 import "@/styles/scss/main.scss";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import "@/styles/scss/main.scss";
 import SplashScreen from "@/app/components/splash-screen";
 
 const geistSans = Geist({
@@ -20,9 +18,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-    <html lang="en">
+    <html>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SplashScreen />
         {children}

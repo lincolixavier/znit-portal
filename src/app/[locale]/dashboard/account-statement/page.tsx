@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import styles from "./extrato.module.scss";
 import Image from "next/image";
 

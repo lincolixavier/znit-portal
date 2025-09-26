@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import InputCPF from "@/app/components/InputCPF";
+import { useI18n } from "@/lib/i18n";
 import styles from "./page.module.scss";
 
 export default function LoginPage() {
+  const { translator, locale } = useI18n();
+  const t = translator;
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -16,18 +19,13 @@ export default function LoginPage() {
     const cpf = formData.get("cpf")?.toString() || "";
     const password = formData.get("password")?.toString() || "";
 
-    // Simulação de chamada à API
     try {
-      // Aqui entra sua chamada real:
-      // const res = await fetch("/api/login", { method: "POST", body: JSON.stringify({ cpf, password }) });
-
+ 
       await new Promise((resolve) => setTimeout(resolve, 1000)); // mock delay
       
-
-      // Redirecionamento após sucesso
-      window.location.href = "/pt_BR/dashboard"; 
+      window.location.href = `/${locale}/dashboard`; 
     } catch (err) {
-      alert("Erro ao fazer login");
+      alert(t.auth.login.errors.invalidCredentials());
     } finally {
       setLoading(false);
     }
@@ -35,19 +33,19 @@ export default function LoginPage() {
 
   return (
     <>
-      <h1 className={styles.login__title}>Entrar</h1>
+      <h1 className={styles.login__title}>{t.auth.login.title()}</h1>
       <p className={styles.login__subtitle}>
-        Acesse com segurança e planeje com confiança.
+        {t.auth.login.subtitle()}
       </p>
 
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="cpf" className="form__label">
-          CPF
+          {t.auth.login.email()}
         </label>
         <InputCPF name="cpf" required />
 
         <label htmlFor="password" className="form__label">
-          Senha
+          {t.auth.login.password()}
         </label>
         <input
           id="password"
@@ -58,14 +56,14 @@ export default function LoginPage() {
         />
 
         <button className="btn btn--primary" type="submit" disabled={loading}>
-          {loading ? "Entrando..." : "Entrar"}
+          {loading ? t.common.loading() : t.auth.login.signIn()}
         </button>
 
       </form>
 
       <p className={styles.login__signup}>
-        <Link href="/forgot-password"className={styles.login__signupLink}>
-           Esqueceu sua senha?
+        <Link href="/forgot-password" className={styles.login__signupLink}>
+          {t.auth.login.forgotPassword()}
         </Link>
       </p>
     </>
