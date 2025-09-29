@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputCPF from "@/app/components/InputCPF";
+import { tempStorage } from "@/lib/tempStorage";
 import styles from "./PersonalInfoTab.module.scss";
 
 type Option = { label: string; value: string };
@@ -41,6 +42,27 @@ export default function PersonalInfoTab() {
     affiliateCpf: "000.000.000-00",
     institutor: "",
   });
+
+  // TEMP: Carregar dados do localStorage
+  useEffect(() => {
+    const userData = tempStorage.getUserData();
+    if (userData?.step1) {
+      const step1 = userData.step1;
+      setForm({
+        fullName: (step1.nomeCompleto as string) || "",
+        birthDate: (step1.dataNascimento as string) || "",
+        cpf: (step1.cpf as string) || "",
+        gender: (step1.genero as string) || "",
+        maritalStatus: (step1.estadoCivil as string) || "",
+        email: (step1.email as string) || "",
+        mobile: (step1.telefone as string) || "",
+        affiliateName: (step1.nomeFiliado as string) || "",
+        relationship: (step1.grauParentesco as string) || "",
+        affiliateCpf: (step1.cpfFiliado as string) || "",
+        institutor: (step1.instituicao as string) || "",
+      });
+    }
+  }, []);
 
   const genderOptions: Option[] = [
     { label: "Feminino", value: "F" },
@@ -182,7 +204,31 @@ export default function PersonalInfoTab() {
       </div>
 
       <div className={styles.formActions}>
-        <button type="button" className={styles.formButton}>Salvar</button>
+        <button 
+          type="button" 
+          className={styles.formButton}
+          onClick={() => {
+            // TEMP: Salvar alterações no localStorage
+            tempStorage.updateUserData({
+              step1: {
+                nomeCompleto: form.fullName,
+                dataNascimento: form.birthDate,
+                cpf: form.cpf,
+                genero: form.gender,
+                estadoCivil: form.maritalStatus,
+                email: form.email,
+                telefone: form.mobile,
+                nomeFiliado: form.affiliateName,
+                grauParentesco: form.relationship,
+                cpfFiliado: form.affiliateCpf,
+                instituicao: form.institutor,
+              },
+            });
+            alert("Informações salvas com sucesso!");
+          }}
+        >
+          Salvar
+        </button>
       </div>
     </section>
   );

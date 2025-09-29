@@ -1,13 +1,14 @@
 // components/Adesao/AdesaoForm.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StepPersonalInfo from "./steps/StepPersonalInfo";
 import StepAddress from "./steps/StepAddress";
 import StepContribution from "./steps/StepContribution";
 import StepSecurity from "./steps/StepSecurity";
 import StepSuccess from "./steps/StepSuccess";
 import { useI18n } from "@/lib/i18n";
+import { tempStorage } from "@/lib/tempStorage";
 
 import styles from "./AdesaoForm.module.scss";
 import { useRouter } from "next/navigation";
@@ -32,11 +33,24 @@ export default function AdesaoForm() {
     step1: {},
   });
 
+  // TEMP: Carregar dados salvos ao montar
+  useEffect(() => {
+    const saved = tempStorage.getUserData();
+    if (saved) {
+      setData(saved as FormData);
+    }
+  }, []);
+
   const handleNext = (stepData: StepData) => {
-    setData((prev) => ({
-      ...prev,
+    const newData = {
+      ...data,
       [`step${currentStep}`]: stepData,
-    }));
+    };
+    setData(newData);
+    
+    // TEMP: Salvar dados a cada step
+    tempStorage.saveEnrollmentData(newData);
+    
     setCurrentStep((prev) => prev + 1);
   };
 

@@ -20,10 +20,20 @@ export default function LoginPage() {
     const password = formData.get("password")?.toString() || "";
 
     try {
-      // TODO: Implement actual authentication logic
-      console.log("Login attempt:", { cpf, password: password ? "***" : "" });
+      // TEMP: Validar com dados temporários
+      const { tempStorage } = await import("@/lib/tempStorage");
       
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // mock delay
+      const isValid = tempStorage.validateLogin(cpf, password);
+      
+      if (!isValid) {
+        alert(t.auth.login.errors.invalidCredentials());
+        return;
+      }
+
+      // TEMP: Salvar sessão
+      tempStorage.setCurrentUser(cpf);
+      
+      await new Promise((resolve) => setTimeout(resolve, 500)); // mock delay
       
       window.location.href = `/${locale}/dashboard`; 
     } catch (error) {

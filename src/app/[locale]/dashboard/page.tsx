@@ -1,19 +1,33 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
+import { tempStorage } from "@/lib/tempStorage";
 import styles from "./page.module.scss";
 
 export default function HomePage() {
   const { translator } = useI18n();
   const t = translator;
+  const [userName, setUserName] = useState("João");
+
+  // TEMP: Carregar nome do usuário do localStorage
+  useEffect(() => {
+    const userData = tempStorage.getUserData();
+    const name = userData?.step1?.nomeCompleto as string;
+    if (name) {
+      // Pegar apenas o primeiro nome
+      const firstName = name.split(" ")[0];
+      setUserName(firstName);
+    }
+  }, []);
 
   return (
     <div className={styles.home}>
       {/* Saudação */}
       <header className={styles.home__header}>
         <h1 className={styles.home__title}>
-          {t.dashboard.greeting({ name: 'João' })}
+          {t.dashboard.greeting({ name: userName })}
         </h1>
         <p className={styles.home__updated}>{t.dashboard.lastUpdate({ date: '21/08/2025' })}</p>
       </header>

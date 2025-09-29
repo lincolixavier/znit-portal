@@ -22,7 +22,6 @@ export default function LanguageDropdown({ currentLocale }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { IconLogout, IconUser, IconChevronDown } from "@tabler/icons-react";
 import { useI18n } from "@/lib/i18n";
+import { tempStorage } from "@/lib/tempStorage";
 import LanguageDropdown from "./LanguageDropdown";
 import styles from "../layout.module.scss";
 
@@ -17,7 +18,18 @@ export default function Header({ collapsed, onToggle }: Props) {
   const { translator, locale } = useI18n();
   const t = translator;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userName, setUserName] = useState("João");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // TEMP: Carregar nome do usuário
+  useEffect(() => {
+    const userData = tempStorage.getUserData();
+    const name = userData?.step1?.nomeCompleto as string;
+    if (name) {
+      const firstName = name.split(" ")[0];
+      setUserName(firstName);
+    }
+  }, []);
 
   // Fechar dropdown ao clicar fora
   useEffect(() => {
@@ -34,8 +46,8 @@ export default function Header({ collapsed, onToggle }: Props) {
   }, []);
 
   const handleLogout = () => {
-    // TODO: Implementar lógica de logout (limpar tokens, etc.)
-    console.log("Logout realizado");
+    // TEMP: Limpar sessão
+    tempStorage.logout();
     // Redirecionar para login
     window.location.href = `/${locale}/auth/login`;
   };
@@ -80,7 +92,7 @@ export default function Header({ collapsed, onToggle }: Props) {
                 <path d="M4 20c1.6-4.2 14.4-4.2 16 0" fill="#94A3B8" />
               </svg>
             </div>
-            <span className={styles.header__name}>João</span>
+            <span className={styles.header__name}>{userName}</span>
             <IconChevronDown 
               size={12} 
               className={`${styles.header__chevron} ${isDropdownOpen ? styles.header__chevronOpen : ''}`}
