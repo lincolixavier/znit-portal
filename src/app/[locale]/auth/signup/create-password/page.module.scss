@@ -1,9 +1,20 @@
 .auth {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  &__icon {
+    color: var(--color-primary);
+  }
+
   &__title {
     font-size: 28px;
     font-weight: 800;
     color: var(--color-text);
-    margin-bottom: var(--sp-2);
+    margin: 0;
   }
 
   &__subtitle {
@@ -35,7 +46,12 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--color-primary);
+  }
 }
 
 .error {
@@ -94,6 +110,7 @@
   display: flex;
   align-items: center;
   gap: var(--sp-2);
+  font-weight: 500;
   
   &.valid {
     color: #00a39b;

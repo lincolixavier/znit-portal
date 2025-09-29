@@ -47,4 +47,19 @@ export const auth = {
     codeExpired: 'Código expirado',
     invalidCode: 'Código de segurança inválido',
   },
+  forgotPassword: {
+    title: 'Esqueceu a senha?',
+    subtitle: 'Digite seu CPF para receber instruções de recuperação de senha',
+    cpf: 'CPF',
+    cpfPlaceholder: 'Informe seu CPF',
+    sendInstructions: 'Enviar instruções',
+    backToLogin: 'Voltar ao login',
+    success: 'Instruções enviadas!',
+    successMessage: 'Verifique seu e-mail para as instruções de recuperação de senha',
+    errors: {
+      cpfRequired: 'CPF é obrigatório',
+      cpfInvalid: 'CPF inválido',
+      userNotFound: 'Usuário não encontrado',
+    },
+  },
 } as const;

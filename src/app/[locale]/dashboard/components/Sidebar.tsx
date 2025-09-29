@@ -67,7 +67,7 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
     { href: `/${locale}/dashboard`, label: t.dashboard.navigation.home(), icon: "home" },
     { href: `/${locale}/dashboard/account-statement`, label: t.dashboard.navigation.statement(), icon: "receipt" },
     { href: `/${locale}/dashboard/personal-info`, label: t.dashboard.navigation.personalInfo(), icon: "user" },
-    { href: `/${locale}/dashboard/documents`, label: t.dashboard.navigation.documents(), icon: "doc" },
+    { href: `#`, label: t.dashboard.navigation.documents(), icon: "doc" },
   ];
 
   return (

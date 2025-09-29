@@ -48,7 +48,7 @@ export default function SignUpForm() {
         />
         <label htmlFor="terms">
           {t.auth.signup.terms()}{" "}
-          <Link href="#" className="link">
+          <Link href="/pt/privacy-policy" className="link">
             {t.auth.signup.privacy()}
           </Link>
         </label>

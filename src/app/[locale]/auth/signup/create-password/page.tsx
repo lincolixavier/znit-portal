@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
+import { IconEye, IconEyeOff, IconCheck, IconX, IconLock } from "@tabler/icons-react";
 
 export default function CreatePasswordPage() {
   const [password, setPassword] = useState("");
@@ -36,7 +37,9 @@ export default function CreatePasswordPage() {
 
   return (
     <div className={styles.auth}>
-      <h1 className={styles.auth__title}>Criar senha</h1>
+      <div className={styles.auth__header}>
+        <h1 className={styles.auth__title}>Criar senha</h1>
+      </div>
       <p className={styles.auth__subtitle}>
         Ainda não tem cadastro? Informe o seu CPF para receber as instruções de primeiro acesso.
       </p>
@@ -61,7 +64,7 @@ export default function CreatePasswordPage() {
             onClick={() => setShowPassword((prev) => !prev)}
             aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
           >
-            {showPassword ? "👁️" : "👁️‍🗨️"}
+            {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
           </button>
         </div>
 
@@ -84,7 +87,7 @@ export default function CreatePasswordPage() {
             onClick={() => setShowConfirm((prev) => !prev)}
             aria-label={showConfirm ? "Ocultar senha" : "Mostrar senha"}
           >
-            {showConfirm ? "👁️" : "👁️‍🗨️"}
+            {showConfirm ? <IconEyeOff size={20} /> : <IconEye size={20} />}
           </button>
         </div>
 
@@ -97,6 +100,8 @@ export default function CreatePasswordPage() {
             style={{ width: `${passwordProgress}%` }}
           />
         </div>
+
+        <small>Sua senha deve conter números, letras, pelo menos uma letra maiúscula e um caracter especial.</small>
 
         {/* Lista de requisitos da senha 
         {password.length > 0 && (
@@ -122,7 +127,17 @@ export default function CreatePasswordPage() {
         {/* Validação de senhas iguais */}
         {confirm.length > 0 && (
           <div className={`${styles.passwordMatch} ${passwordsMatch ? styles.valid : styles.invalid}`}>
-            {passwordsMatch ? "✓" : "Senhas não coincidem"}
+            {passwordsMatch ? (
+              <>
+                <IconCheck size={16} />
+                Senhas coincidem
+              </>
+            ) : (
+              <>
+                <IconX size={16} />
+                Senhas não coincidem
+              </>
+            )}
           </div>
         )}
 

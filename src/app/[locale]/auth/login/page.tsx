@@ -43,7 +43,7 @@ export default function LoginPage() {
 
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="cpf" className="form__label">
-          {t.auth.login.email()}
+          {t.auth.signup.cpfPlaceholder()}
         </label>
         <InputCPF name="cpf" required />
 
@@ -65,7 +65,7 @@ export default function LoginPage() {
       </form>
 
       <p className={styles.login__signup}>
-        <Link href="/forgot-password" className={styles.login__signupLink}>
+        <Link href={`/${locale}/auth/forgot-password`} className={styles.login__signupLink}>
           {t.auth.login.forgotPassword()}
         </Link>
       </p>

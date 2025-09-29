@@ -214,61 +214,13 @@ export default function StepPersonalInfo({
 
       </div>
 
-     {/* Representante legal */}
-
-      <div className={styles["section-title"]}>
-        <h2>Representante legal</h2>
-        <p className={styles["info"]}>        
-          Essa Declaração de Consentimento somente pode ser dada por pelo menos um dos pais ou pelo responsável legal da criança.
-        </p>
-      </div>
-     
-
-      <div className={styles["row"]}>
-        <div
-          className={`${styles["field"]} ${styles["w-100"]} ${
-            errors.nomeCompleto ? styles["field--error"] : ""
-          }`}
-        >
-          <label>Nome completo</label>
-          <input
-            {...register("nomeCompleto")}
-            placeholder="Digite o nome completo do responsável"
-          />
-          {errors.nomeCompleto && (
-            <span className={styles["error-text"]}>
-              {errors.nomeCompleto.message}
-            </span>
-          )}
-        </div>
-      </div>
-
-      <div className={styles["row"]}>
-          <div
-            className={`${styles["field"]} ${styles["w-50"]} ${
-              errors.cpf ? styles["field--error"] : ""
-            }`}
-          >
-            <label>CPF</label>
-            <input
-              {...register("cpf")}
-              placeholder="Digite o CPF do responsável"
-            />
-            {errors.cpf && (
-              <span className={styles["error-text"]}>
-                {errors.cpf.message}
-              </span>
-            )}
-          </div>
-        </div>
-     
 
       {/* Upload de documento */}
       <div className={styles["section-title"]}>
         <h2>Anexar documento</h2>
         <p>        
-          Os documentos pedidos são unicamente para confirmação de informações.
-          Formatos aceitos: PDF, JPG, PNG. Máximo 10mb.
+        Os documentos aceitos para envio são: RG, CNH, Certidão de Nascimento (para menores), Passaporte, CTPS, Carteira Profissional ou Identidade Militar. Ressaltamos que a utilização desses documentos tem como finalidade exclusiva a confirmação de suas informações.
+        Formatos aceitos: PDF, JPG, PNG. Na máximo 10mb
         </p>
       </div>
 
@@ -291,7 +243,7 @@ export default function StepPersonalInfo({
 
       {/* Instituição */}
       <div className={styles["section-title"]}>
-        <h2>Empregado ou aposentado</h2>
+        <h2>Empregado, associado ou aposentado</h2>
       </div>
 
 

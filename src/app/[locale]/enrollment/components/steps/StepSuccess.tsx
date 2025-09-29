@@ -2,7 +2,7 @@
 
 import styles from "./steps.module.scss";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { IconDownload, IconCheck } from "@tabler/icons-react";
 
 type Props = {
   onDownload?: () => void;
@@ -30,22 +30,7 @@ export default function StepSuccess({ onDownload }: Props) {
 
         {/* Icon */}
         <div className={styles.success__icon}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="80"
-            height="80"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="12" r="12" fill="#009EC5" />
-            <path
-              d="M7 12.5l3.5 3.5 6-7"
-              stroke="#fff"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <IconCheck size={80} color="#009EC5" stroke={3} />
         </div>
           {/* Text */}
       <h2 className={styles.success__title}>Agora é só aguardar!</h2>
@@ -67,7 +52,7 @@ export default function StepSuccess({ onDownload }: Props) {
           onClick={onDownload}
           aria-label="Baixar comprovante"
         >
-          <Download size={20} />
+          <IconDownload size={20} />
         </button>
       </div>
     </div>
