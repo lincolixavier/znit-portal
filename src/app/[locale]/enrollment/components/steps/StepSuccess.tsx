@@ -3,12 +3,24 @@
 import styles from "./steps.module.scss";
 import Image from "next/image";
 import { IconDownload, IconCheck } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 type Props = {
   onDownload?: () => void;
 };
 
 export default function StepSuccess({ onDownload }: Props) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redireciona para a página de aprovação após 3 segundos
+    const timer = setTimeout(() => {
+      router.push("/pt/enrollment/approved");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [router]);
   return (
     <div className={styles.success}>
       {/* Blurs */}
@@ -53,6 +65,17 @@ export default function StepSuccess({ onDownload }: Props) {
           aria-label="Baixar comprovante"
         >
           <IconDownload size={20} />
+        </button>
+      </div>
+
+      {/* Continue Button */}
+      <div style={{ marginTop: "2rem", textAlign: "center" }}>
+        <button
+          type="button"
+          className={styles["button"]}
+          onClick={() => router.push("/pt/enrollment/approved")}
+        >
+          Continuar para cadastro de senha
         </button>
       </div>
     </div>
