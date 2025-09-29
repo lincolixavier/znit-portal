@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { tempStorage } from "@/lib/tempStorage";
 import styles from "./AddressTab.module.scss";
 
 export default function AddressTab() {
@@ -11,6 +12,23 @@ export default function AddressTab() {
     city: "",
     state: "",
   });
+
+  // TEMP: Carregar dados do localStorage
+  useEffect(() => {
+    const userData = tempStorage.getUserData();
+    if (userData?.step2) {
+      const step2 = userData.step2;
+      setForm({
+        cep: (step2.cep as string) || "",
+        street: (step2.endereco as string) || "",
+        number: (step2.numero as string) || "",
+        complement: (step2.complemento as string) || "",
+        district: (step2.bairro as string) || "",
+        city: (step2.cidade as string) || "",
+        state: (step2.estado as string) || "",
+      });
+    }
+  }, []);
 
   return (
     <section className={styles.card} role="tabpanel">
@@ -92,7 +110,27 @@ export default function AddressTab() {
       </div>
 
       <div className={styles.formActions}>
-        <button type="button" className={styles.formButton}>Salvar</button>
+        <button 
+          type="button" 
+          className={styles.formButton}
+          onClick={() => {
+            // TEMP: Salvar alterações no localStorage
+            tempStorage.updateUserData({
+              step2: {
+                cep: form.cep,
+                endereco: form.street,
+                numero: form.number,
+                complemento: form.complement,
+                bairro: form.district,
+                cidade: form.city,
+                estado: form.state,
+              },
+            });
+            alert("Endereço salvo com sucesso!");
+          }}
+        >
+          Salvar
+        </button>
       </div>
     </section>
   );

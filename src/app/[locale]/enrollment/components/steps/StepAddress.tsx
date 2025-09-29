@@ -66,13 +66,13 @@ export default function StepAddress({ onNext, onBack }: Props) {
         <div className={`${styles["field"]} ${styles["w-80"]}`}>
           <label>Endereço</label>
           <input {...register("endereco")} placeholder="Digite seu endereço" />
-          {errors.endereco && <span className="error-text">{errors.endereco.message}</span>}
+          {errors.endereco && <span className={styles["error-text"]}>{errors.endereco.message}</span>}
         </div>
 
         <div className={`${styles["field"]} ${styles["w-20"]}`}>
           <label>Número</label>
           <input {...register("numero")} placeholder="0000" />
-          {errors.numero && <span className="error-text">{errors.numero.message}</span>}
+          {errors.numero && <span className={styles["error-text"]}>{errors.numero.message}</span>}
         </div>
       </div>
 
@@ -86,7 +86,7 @@ export default function StepAddress({ onNext, onBack }: Props) {
         <div className={`${styles["field"]} ${styles["w-50"]}`}>
           <label>Bairro</label>
           <input {...register("bairro")} placeholder="Digite o bairro" />
-          {errors.bairro && <span className="error-text">{errors.bairro.message}</span>}
+          {errors.bairro && <span className={styles["error-text"]}>{errors.bairro.message}</span>}
         </div>
       </div>
 
@@ -94,7 +94,7 @@ export default function StepAddress({ onNext, onBack }: Props) {
         <div className={`${styles["field"]} ${styles["w-50"]}`}>
           <label>Cidade</label>
           <input {...register("cidade")} placeholder="Digite a cidade" />
-          {errors.cidade && <span className="error-text">{errors.cidade.message}</span>}
+          {errors.cidade && <span className={styles["error-text"]}>{errors.cidade.message}</span>}
         </div>
 
         <div className={`${styles["field"]} ${styles["w-50"]}`}>
@@ -105,7 +105,7 @@ export default function StepAddress({ onNext, onBack }: Props) {
               <option key={uf} value={uf}>{uf}</option>
             ))}
           </select>
-          {errors.estado && <span className="error-text">{errors.estado.message}</span>}
+          {errors.estado && <span className={styles["error-text"]}>{errors.estado.message}</span>}
         </div>
       </div>
 

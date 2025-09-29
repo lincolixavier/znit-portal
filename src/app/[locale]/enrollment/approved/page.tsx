@@ -3,12 +3,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.scss";
+import { tempStorage } from "@/lib/tempStorage";
+import { useEffect, useState } from "react";
 
 export default function AdesaoAprovadaPage() {
-  // /adesao-aprovada?nome=Marcos&protocolo=999999&link=/auth/signup
-  const nome = "João da Silva";
-  const protocolo = "512093";
-  const portalUrl = "/pt/auth/signup"; 
+  const [userData, setUserData] = useState<any>(null);
+  const portalUrl = "/pt/auth/signup";
+
+  useEffect(() => {
+    const data = tempStorage.getUserData();
+    setUserData(data);
+  }, []);
+
+  const nome = userData?.step1?.nomeCompleto || "Usuário";
+  const protocolo = "512093"; // TODO: Generate real protocol number 
 
   return (
     <div className={styles.page}>

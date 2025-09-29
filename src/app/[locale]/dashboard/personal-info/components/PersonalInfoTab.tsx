@@ -173,6 +173,8 @@ export default function PersonalInfoTab() {
             onChange={(e) => setForm((f) => ({ ...f, relationship: e.target.value }))}
           >
             <option value="">Item selecionado</option>
+            <option value="pai">Pai</option>
+            <option value="mae">Mãe</option>
             <option value="conjuge">Cônjuge</option>
             <option value="filho">Filho(a)</option>
             <option value="outro">Outro</option>
@@ -196,8 +198,8 @@ export default function PersonalInfoTab() {
             onChange={(e) => setForm((f) => ({ ...f, institutor: e.target.value }))}
           >
             <option value="">Item selecionado</option>
-            <option value="empresa1">Empresa 1</option>
-            <option value="empresa2">Empresa 2</option>
+            <option value="instituto1">Instituto 1</option>
+            <option value="instituto2">Instituto 2</option>
             <option value="outro">Outro</option>
           </select>
         </Field>

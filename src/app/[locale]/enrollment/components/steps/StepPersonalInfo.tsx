@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useI18n } from "@/lib/i18n";
+import InputCPF from "@/app/components/InputCPF";
 import styles from "./steps.module.scss";
 
 interface DataStepPersonalInfo {
@@ -58,12 +59,16 @@ export default function StepPersonalInfo({
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<DataStepPersonalInfo>({
     // Forçar o genérico no resolver evita o erro de tipo
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
+
+  const cpfValue = watch("cpf");
 
   const onSubmit = (data: DataStepPersonalInfo) => {
     console.log("onSubmit");
@@ -110,10 +115,14 @@ export default function StepPersonalInfo({
           }`}
         >
           <label>{t.enrollment.personalInfo.cpf()}</label>
-          <input {...register("cpf")} placeholder={t.enrollment.personalInfo.cpfPlaceholder()} />
-          {errors.cpf && (
-            <span className={styles["error-text"]}>{errors.cpf.message}</span>
-          )}
+          <InputCPF
+            name="cpf"
+            defaultValue={cpfValue}
+            onChangeCPF={(formatted, digitsOnly) => {
+              setValue("cpf", formatted);
+            }}
+            errorMessage={errors.cpf?.message}
+          />
         </div>
 
         <div
@@ -298,12 +307,14 @@ export default function StepPersonalInfo({
           }`}
         >
           <label>CPF do filiado</label>
-          <input {...register("cpfFiliado")} placeholder="Digite seu CPF" />
-          {errors.cpfFiliado && (
-            <span className={styles["error-text"]}>
-              {errors.cpfFiliado.message}
-            </span>
-          )}
+          <InputCPF
+            name="cpfFiliado"
+            defaultValue={watch("cpfFiliado")}
+            onChangeCPF={(formatted, digitsOnly) => {
+              setValue("cpfFiliado", formatted);
+            }}
+            errorMessage={errors.cpfFiliado?.message}
+          />
         </div>
       </div>
 
