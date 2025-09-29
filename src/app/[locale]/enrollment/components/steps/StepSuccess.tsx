@@ -68,16 +68,7 @@ export default function StepSuccess({ onDownload }: Props) {
         </button>
       </div>
 
-      {/* Continue Button */}
-      <div style={{ marginTop: "2rem", textAlign: "center" }}>
-        <button
-          type="button"
-          className={styles["button"]}
-          onClick={() => router.push("/pt/enrollment/approved")}
-        >
-          Continuar para cadastro de senha
-        </button>
-      </div>
+     
     </div>
   );
 }
