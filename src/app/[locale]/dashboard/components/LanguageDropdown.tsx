@@ -16,12 +16,6 @@ const languageNames: Record<Locale, string> = {
   es: "Español"
 };
 
-const languageFlags: Record<Locale, string> = {
-  pt: "🇧🇷",
-  en: "🇺🇸",
-  es: "🇪🇸"
-};
-
 export default function LanguageDropdown({ currentLocale }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -57,7 +51,6 @@ export default function LanguageDropdown({ currentLocale }: Props) {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Change language"
       >
-        <span className={styles.flag}>{languageFlags[currentLocale]}</span>
         <span className={styles.language}>{languageNames[currentLocale]}</span>
         <svg
           className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
@@ -78,7 +71,6 @@ export default function LanguageDropdown({ currentLocale }: Props) {
               className={`${styles.menuItem} ${locale === currentLocale ? styles.menuItemActive : ""}`}
               onClick={() => handleLanguageChange(locale)}
             >
-              <span className={styles.flag}>{languageFlags[locale]}</span>
               <span className={styles.language}>{languageNames[locale]}</span>
               {locale === currentLocale && (
                 <svg className={styles.check} width="16" height="16" viewBox="0 0 24 24">

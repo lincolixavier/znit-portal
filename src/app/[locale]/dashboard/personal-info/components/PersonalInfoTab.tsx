@@ -131,7 +131,7 @@ export default function PersonalInfoTab() {
       <div className={styles.formDivider} />
 
       <h3 className={styles.formSectionTitle}>Empregado em atividade ou aposentado</h3>
-      <p className={styles.formSectionHint}>[Breve texto explicativo]</p>
+      <p className={styles.formSectionHint}></p>
 
       <div className={styles.formGridFull}>
         <Field label="Nome completo do filiado">

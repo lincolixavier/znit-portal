@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import styles from "../page.module.scss";
 
 export default function SettingsTab() {
@@ -31,7 +32,7 @@ export default function SettingsTab() {
               onClick={() => setShowOld(v => !v)} 
               aria-label="Mostrar/ocultar senha"
             >
-              👁️
+              {showOld ? <IconEyeOff size={20} /> : <IconEye size={20} />}
             </button>
           </div>
         </div>
@@ -55,7 +56,7 @@ export default function SettingsTab() {
               onClick={() => setShowNew(v => !v)} 
               aria-label="Mostrar/ocultar senha"
             >
-              👁️
+              {showNew ? <IconEyeOff size={20} /> : <IconEye size={20} />}
             </button>
           </div>
         </div>
@@ -74,7 +75,7 @@ export default function SettingsTab() {
               onClick={() => setShowRep(v => !v)} 
               aria-label="Mostrar/ocultar senha"
             >
-              👁️
+              {showRep ? <IconEyeOff size={20} /> : <IconEye size={20} />}
             </button>
           </div>
         </div>

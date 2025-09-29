@@ -33,5 +33,7 @@ export const dashboard = {
   header: {
     menuToggle: 'Abrir/cerrar menú',
     user: 'Usuario',
+    logout: 'Cerrar sesión',
+    profile: 'Perfil',
   },
 } as const;

@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
+import { IconLogout, IconUser, IconChevronDown } from "@tabler/icons-react";
 import { useI18n } from "@/lib/i18n";
 import LanguageDropdown from "./LanguageDropdown";
 import styles from "../layout.module.scss";
@@ -13,6 +16,29 @@ type Props = {
 export default function Header({ collapsed, onToggle }: Props) {
   const { translator, locale } = useI18n();
   const t = translator;
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Fechar dropdown ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    // TODO: Implementar lógica de logout (limpar tokens, etc.)
+    console.log("Logout realizado");
+    // Redirecionar para login
+    window.location.href = `/${locale}/auth/login`;
+  };
 
   return (
     <header className={`${styles.header} ${collapsed ? styles.headerCollapsed : ''}`}>
@@ -38,22 +64,51 @@ export default function Header({ collapsed, onToggle }: Props) {
       {/* Usuário à direita */}
       <div className={styles.header__right}>
         <LanguageDropdown currentLocale={locale} />
-        <div className={styles.header__user}>
-          <div className={styles.header__avatar} aria-hidden>
-            <svg viewBox="0 0 24 24" width="18" height="18">
-              <circle cx="12" cy="8" r="4" fill="#94A3B8" />
-              <path d="M4 20c1.6-4.2 14.4-4.2 16 0" fill="#94A3B8" />
-            </svg>
-          </div>
-          <span className={styles.header__name}>João</span>
-          <svg
-            className={styles.header__chevron}
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
+        
+        {/* Dropdown do usuário */}
+        <div className={styles.header__userDropdown} ref={dropdownRef}>
+          <button
+            type="button"
+            className={styles.header__user}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            aria-expanded={isDropdownOpen}
+            aria-haspopup="true"
           >
-            <path d="M6 9l6 6 6-6" fill="none" stroke="#0EA5E9" strokeWidth="2" />
-          </svg>
+            <div className={styles.header__avatar} aria-hidden>
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <circle cx="12" cy="8" r="4" fill="#94A3B8" />
+                <path d="M4 20c1.6-4.2 14.4-4.2 16 0" fill="#94A3B8" />
+              </svg>
+            </div>
+            <span className={styles.header__name}>João</span>
+            <IconChevronDown 
+              size={12} 
+              className={`${styles.header__chevron} ${isDropdownOpen ? styles.header__chevronOpen : ''}`}
+            />
+          </button>
+
+          {/* Menu dropdown */}
+          {isDropdownOpen && (
+            <div className={styles.header__dropdownMenu}>
+              <Link 
+                href={`/${locale}/dashboard/personal-info`}
+                className={styles.header__dropdownItem}
+                onClick={() => setIsDropdownOpen(false)}
+              >
+                <IconUser size={16} />
+                <span>{t.dashboard.header.profile()}</span>
+              </Link>
+              
+              <button
+                type="button"
+                className={styles.header__dropdownItem}
+                onClick={handleLogout}
+              >
+                <IconLogout size={16} />
+                <span>{t.dashboard.header.logout()}</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>

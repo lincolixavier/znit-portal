@@ -3,11 +3,30 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 32px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 20px;
+  }
 
   &__title {
     font-size: 28px;
     font-weight: 700;
     color: #006d66;
+    
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
   }
 
   &__step-indicator {
@@ -21,5 +40,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    @media (max-width: 768px) {
+      align-self: flex-end;
+    }
+    
+    @media (max-width: 480px) {
+      width: 36px;
+      height: 36px;
+      font-size: 12px;
+    }
   }
 }
