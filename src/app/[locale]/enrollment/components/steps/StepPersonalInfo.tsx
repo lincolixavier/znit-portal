@@ -63,19 +63,6 @@ export default function StepPersonalInfo({
     // Forçar o genérico no resolver evita o erro de tipo
     resolver: yupResolver(schema),
     mode: "onSubmit",
-    defaultValues:{
-      nomeCompleto: "João da Silva",
-      cpf: "123.456.789-00",
-      dataNascimento: "01/01/1990",
-      genero: "M",
-      estadoCivil: "solteiro",
-      email: "joao.silva@example.com",
-      telefone: "(11) 99999-9999",
-      instituicao: "instituto1",
-      nomeFiliado: "Maria da Silva",
-      grauParentesco: "mae",
-      cpfFiliado: "987.654.321-00",
-    }
   });
 
   const onSubmit = (data: DataStepPersonalInfo) => {

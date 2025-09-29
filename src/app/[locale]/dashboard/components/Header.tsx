@@ -18,7 +18,7 @@ export default function Header({ collapsed, onToggle }: Props) {
   const { translator, locale } = useI18n();
   const t = translator;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [userName, setUserName] = useState("João");
+  const [userName, setUserName] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // TEMP: Carregar nome do usuário
@@ -28,6 +28,8 @@ export default function Header({ collapsed, onToggle }: Props) {
     if (name) {
       const firstName = name.split(" ")[0];
       setUserName(firstName);
+    } else {
+      setUserName("Usuário");
     }
   }, []);
 

@@ -30,16 +30,16 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 export default function PersonalInfoTab() {
   const [form, setForm] = useState<PersonalInfoForm>({
-    fullName: "João Da Silva",
-    birthDate: "29/02/1990",
-    cpf: "999.999.999-99",
-    gender: "F",
-    maritalStatus: "solteiro",
-    email: "maria@exemplo.com",
+    fullName: "",
+    birthDate: "",
+    cpf: "",
+    gender: "",
+    maritalStatus: "",
+    email: "",
     mobile: "",
-    affiliateName: "João da Silva",
+    affiliateName: "",
     relationship: "",
-    affiliateCpf: "000.000.000-00",
+    affiliateCpf: "",
     institutor: "",
   });
 

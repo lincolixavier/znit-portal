@@ -46,15 +46,6 @@ export default function StepAddress({ onNext, onBack }: Props) {
     formState: { errors },
   } = useForm<Step2FormData>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      cep: "01001-000",
-      endereco: "Av. Paulista",
-      numero: "1000",
-      complemento: "Apto 101",
-      bairro: "Bela Vista",
-      cidade: "São Paulo",
-      estado: "SP",
-    },
   });
 
   const onSubmit = (data: Step2FormData) => onNext(data);

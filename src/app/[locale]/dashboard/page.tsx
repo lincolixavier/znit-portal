@@ -9,7 +9,7 @@ import styles from "./page.module.scss";
 export default function HomePage() {
   const { translator } = useI18n();
   const t = translator;
-  const [userName, setUserName] = useState("João");
+  const [userName, setUserName] = useState("");
 
   // TEMP: Carregar nome do usuário do localStorage
   useEffect(() => {
@@ -19,6 +19,8 @@ export default function HomePage() {
       // Pegar apenas o primeiro nome
       const firstName = name.split(" ")[0];
       setUserName(firstName);
+    } else {
+      setUserName("Usuário");
     }
   }, []);
 

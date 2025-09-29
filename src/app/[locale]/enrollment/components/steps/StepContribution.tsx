@@ -51,8 +51,8 @@ export default function StepAddress({ onNext, onBack }: Props) {
     resolver: yupResolver(schema),
     mode: "onSubmit",
     defaultValues: {
-      contributionValue: 10000, // R$ 100,00
-      valorAporte: 200000,
+      contributionValue: 0,
+      valorAporte: 0,
     },
   });
 
