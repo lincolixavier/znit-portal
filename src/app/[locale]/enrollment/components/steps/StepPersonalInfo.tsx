@@ -118,7 +118,7 @@ export default function StepPersonalInfo({
           <InputCPF
             name="cpf"
             defaultValue={cpfValue}
-            onChangeCPF={(formatted, digitsOnly) => {
+            onChangeCPF={(formatted) => {
               setValue("cpf", formatted);
             }}
             errorMessage={errors.cpf?.message}
@@ -310,7 +310,7 @@ export default function StepPersonalInfo({
           <InputCPF
             name="cpfFiliado"
             defaultValue={watch("cpfFiliado")}
-            onChangeCPF={(formatted, digitsOnly) => {
+            onChangeCPF={(formatted) => {
               setValue("cpfFiliado", formatted);
             }}
             errorMessage={errors.cpfFiliado?.message}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
-import { IconEye, IconEyeOff, IconCheck, IconX, IconLock } from "@tabler/icons-react";
+import { IconEye, IconEyeOff, IconCheck, IconX } from "@tabler/icons-react";
 
 export default function CreatePasswordPage() {
   const [password, setPassword] = useState("");

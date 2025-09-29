@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SecurityCode from "@/app/[locale]/auth/signup/security/SecurityCode";
-import { tempStorage } from "@/lib/tempStorage";
 import styles from "./steps.module.scss";
 
 type Props = {

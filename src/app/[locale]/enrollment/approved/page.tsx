@@ -6,13 +6,40 @@ import styles from "./page.module.scss";
 import { tempStorage } from "@/lib/tempStorage";
 import { useEffect, useState } from "react";
 
+type StepData = {
+  [key: string]: unknown;
+  nomeCompleto?: string;
+};
+
+type EnrollmentData = {
+  step1?: StepData;
+  step2?: StepData;
+  step3?: StepData;
+  step4?: StepData;
+};
+
+const isEnrollmentData = (value: unknown): value is EnrollmentData => {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const candidate = value as Record<string, unknown>;
+  if ("step1" in candidate && candidate.step1 !== undefined && typeof candidate.step1 !== "object") {
+    return false;
+  }
+
+  return true;
+};
+
 export default function AdesaoAprovadaPage() {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<EnrollmentData | null>(null);
   const portalUrl = "/pt/auth/signup";
 
   useEffect(() => {
     const data = tempStorage.getUserData();
-    setUserData(data);
+    if (isEnrollmentData(data)) {
+      setUserData(data);
+    }
   }, []);
 
   const nome = userData?.step1?.nomeCompleto || "Usuário";
