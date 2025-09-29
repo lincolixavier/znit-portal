@@ -121,7 +121,7 @@
 }
 
 // Estilo para InputCPF para manter consistência
-:global(.form__input) {
+.formInput {
   width: 100%;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -141,10 +141,10 @@
   &::placeholder {
     color: #9ca3af;
   }
-}
-
-:global(.form__input--error) {
-  border-color: #ef4444;
+  
+  &--error {
+    border-color: #ef4444;
+  }
 }
 
 .divider {

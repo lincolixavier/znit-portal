@@ -21,6 +21,8 @@ export const auth = {
     subtitle: 'Junte-se a milhares de investidores',
     firstName: 'Nome',
     lastName: 'Sobrenome',
+    cpf: 'CPF',
+    cpfPlaceholder: 'Informe seu CPF',
     email: 'Endereço de E-mail',
     password: 'Senha',
     confirmPassword: 'Confirmar Senha',

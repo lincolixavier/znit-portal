@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm, Controller, watch } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./steps.module.scss";
@@ -8,7 +8,7 @@ import { MoneyInput } from "@/app/components/money-input";
 
 interface DataStepContribution {
   contributionValue: number; // em centavos
-  valorAporte?: number;      // em centavos
+  valorAporte?: number | null;      // em centavos
 }
 
 type Props = {
@@ -48,7 +48,7 @@ export default function StepAddress({ onNext, onBack }: Props) {
     watch,
     formState: { errors },
   } = useForm<DataStepContribution>({
-    resolver: yupResolver<DataStepContribution>(schema),
+    resolver: yupResolver(schema),
     mode: "onSubmit",
     defaultValues: {
       contributionValue: 10000, // R$ 100,00
@@ -114,7 +114,7 @@ export default function StepAddress({ onNext, onBack }: Props) {
               <MoneyInput
                 label="Valor do aporte (opcional)"
                 name={field.name}
-                value={field.value}
+                value={field.value ?? 0}
                 onChange={field.onChange}
                 error={errors.valorAporte?.message}
               />

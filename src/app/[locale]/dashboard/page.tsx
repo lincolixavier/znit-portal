@@ -4,36 +4,6 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import styles from "./page.module.scss";
 
-function PigIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden>
-      <g fill="none" stroke="#0EA5C0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M19 11a6.5 6.5 0 0 0-6.5-6.5H9.8A6.3 6.3 0 0 0 4 10.8v2.9A3.3 3.3 0 0 0 7.3 17h8.8A3.9 3.9 0 0 0 20 13.1v-.6" />
-        <path d="M20 9l2 .6-1.1 2.3" />
-        <circle cx="16.2" cy="10" r="0.9" fill="#0EA5C0" stroke="none" />
-      </g>
-    </svg>
-  );
-}
-
-function CubeIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-      <path d="M12 2l9 5-9 5-9-5 9-5zm9 10l-9 5-9-5" fill="none" stroke="#0EA5C0" strokeWidth="1.8" />
-      <path d="M12 7v10" stroke="#0EA5C0" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
-function TrendIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-      <path d="M3 17l6-6 4 4 7-7" fill="none" stroke="#0EA5C0" strokeWidth="1.8" />
-      <path d="M14 8h6v6" fill="none" stroke="#0EA5C0" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
 export default function HomePage() {
   const { translator } = useI18n();
   const t = translator;

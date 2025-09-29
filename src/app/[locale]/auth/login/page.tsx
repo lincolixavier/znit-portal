@@ -20,11 +20,14 @@ export default function LoginPage() {
     const password = formData.get("password")?.toString() || "";
 
     try {
- 
+      // TODO: Implement actual authentication logic
+      console.log("Login attempt:", { cpf, password: password ? "***" : "" });
+      
       await new Promise((resolve) => setTimeout(resolve, 1000)); // mock delay
       
       window.location.href = `/${locale}/dashboard`; 
-    } catch (err) {
+    } catch (error) {
+      console.error("Login error:", error);
       alert(t.auth.login.errors.invalidCredentials());
     } finally {
       setLoading(false);

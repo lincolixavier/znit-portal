@@ -22,7 +22,7 @@ interface DataStepPersonalInfo {
 }
 
 // TIPAR o schema como ObjectSchema<DataStepPersonalInfo>
-const createSchema = (t: any) => yup
+const createSchema = (t: { enrollment: { validation: { required: () => string; invalidEmail: () => string } } }): yup.ObjectSchema<DataStepPersonalInfo> => yup
   .object({
     nomeCompleto: yup.string().required(t.enrollment.validation.required()),
     cpf: yup.string().required(t.enrollment.validation.required()),
@@ -32,7 +32,8 @@ const createSchema = (t: any) => yup
     email: yup.string().email(t.enrollment.validation.invalidEmail()).required(t.enrollment.validation.required()),
     telefone: yup.string().required(t.enrollment.validation.required()),
     documento: yup
-      .mixed<FileList>(),
+      .mixed<FileList>()
+      .optional(),
       // .test(
       //   "required",
       //   t.enrollment.validation.required'),

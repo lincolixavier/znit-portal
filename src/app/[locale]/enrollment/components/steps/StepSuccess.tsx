@@ -18,7 +18,7 @@ export default function StepSuccess({ onDownload }: Props) {
      {/* Container principal */}
       <div className={styles.success__header}>
         {/* Confetti */}
-        <div className={styles.success__confetti}>
+        <div className={`${styles.success__confetti} ${styles.fadeIn}`}>
           <Image 
             src="/images/confetii.png" 
             alt="Confetti decorativo" 

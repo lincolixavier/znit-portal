@@ -7,13 +7,27 @@ type Props = {
   length?: number;
   onChange?: (code: string) => void;     // retorna o código parcial
   onComplete?: (code: string) => void;   // dispara quando todos dígitos preenchidos
+  onSubmit?: (code: string) => void;      // callback para quando o código é submetido
+  onResend?: () => void;                 // callback para reenviar código
   autoFocus?: boolean;
 };
 
 const SecurityCode = forwardRef<HTMLInputElement[], Props>(
-  ({ length = 6, onChange, onComplete, autoFocus = true }, ref) => {
+  ({ length = 6, onChange, onComplete, onSubmit, onResend, autoFocus = true }, ref) => {
     const [values, setValues] = useState<string[]>(Array(length).fill(""));
     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
+
+    // Expose inputsRef to parent component via ref
+    useEffect(() => {
+      if (ref) {
+        const filteredRefs = inputsRef.current.filter((el): el is HTMLInputElement => el !== null);
+        if (typeof ref === 'function') {
+          ref(filteredRefs);
+        } else {
+          ref.current = filteredRefs;
+        }
+      }
+    }, [ref]);
 
     // foca no primeiro input ao montar
     useEffect(() => {
@@ -30,6 +44,7 @@ const SecurityCode = forwardRef<HTMLInputElement[], Props>(
         onChange?.(code);
         if (code.length === length && !next.includes("")) {
           onComplete?.(code);
+          onSubmit?.(code);
         }
         return next;
       });
@@ -72,7 +87,10 @@ const SecurityCode = forwardRef<HTMLInputElement[], Props>(
       const digits = data.slice(0, length).split("");
       setValues(digits.concat(Array(length - digits.length).fill("")));
       onChange?.(digits.join(""));
-      if (digits.length === length) onComplete?.(digits.join(""));
+      if (digits.length === length) {
+        onComplete?.(digits.join(""));
+        onSubmit?.(digits.join(""));
+      }
       inputsRef.current[Math.min(digits.length - 1, length - 1)]?.focus();
     };
 
@@ -81,7 +99,9 @@ const SecurityCode = forwardRef<HTMLInputElement[], Props>(
         {Array.from({ length }).map((_, i) => (
           <input
             key={i}
-            ref={(el) => (inputsRef.current[i] = el)}
+            ref={(el) => {
+              inputsRef.current[i] = el;
+            }}
             className={styles.otp__box}
             inputMode="numeric"
             autoComplete="one-time-code"
@@ -93,6 +113,15 @@ const SecurityCode = forwardRef<HTMLInputElement[], Props>(
             aria-label={`Dígito ${i + 1}`}
           />
         ))}
+        {onResend && (
+          <button
+            type="button"
+            onClick={onResend}
+            className={styles.resendButton}
+          >
+            Reenviar código
+          </button>
+        )}
       </div>
     );
   }

@@ -21,6 +21,8 @@ export const auth = {
     subtitle: 'Join thousands of investors',
     firstName: 'First Name',
     lastName: 'Last Name',
+    cpf: 'CPF',
+    cpfPlaceholder: 'Enter your CPF',
     email: 'Email Address',
     password: 'Password',
     confirmPassword: 'Confirm Password',

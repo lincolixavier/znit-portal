@@ -11,14 +11,14 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-interface I18nProviderProps {
+interface I18nProviderProps<T = unknown> {
   locale: Locale;
-  messages: Messages;
+  messages: T;
   children: ReactNode;
 }
 
 export function I18nProvider({ locale, messages, children }: I18nProviderProps) {
-  const translator = createTranslator(messages);
+  const translator = createTranslator(messages as Messages);
 
   return (
     <I18nContext.Provider value={{ locale, translator }}>

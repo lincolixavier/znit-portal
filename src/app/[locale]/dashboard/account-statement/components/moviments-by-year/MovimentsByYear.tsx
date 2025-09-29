@@ -41,14 +41,12 @@ type Props = {
   year: number;
   rows: Row[];            // TODAS as linhas desse ano (qualquer mês)
   initialMonth?: number;  // opcional (1..12); se não vier, abre no 1º mês que tem dados
-  showBadge?: boolean;    // mostra o “avatar” decorativo (default true)
 };
 
 export default function MovementsByYear({
   year,
   rows,
   initialMonth,
-  showBadge = true,
 }: Props) {
   // mês inicial: o fornecido; senão, o 1º mês que possuir linhas; senão 1
   const firstMonthWithData =

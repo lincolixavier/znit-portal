@@ -29,8 +29,8 @@ const dados = {
     estado: "SP"
   },
   contribuicao: {
-    mensal: 250000,
-    aporte: 500000
+    mensal: "250000",
+    aporte: "500000"
   }
 };
 

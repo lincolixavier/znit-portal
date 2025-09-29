@@ -1,18 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { getTranslator, getLocaleFromParams } from "@/lib/i18n";
 import styles from "./page.module.scss";
 import AdesaoForm from "../components/AdesaoForm";
 
-interface AdesaoPageProps {
-  params: {
-    locale: string;
-  };
-}
 
-export default function AdesaoPage({ params }: AdesaoPageProps) {
-  const locale = getLocaleFromParams(params as { locale: string });
-  const t = getTranslator(locale);
+
+export default async function AdesaoPage() {
 
   return (
     <main className={styles["adesao-page__wrapper"]}>

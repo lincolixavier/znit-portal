@@ -15,7 +15,7 @@ export default function Header({ collapsed, onToggle }: Props) {
   const t = translator;
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${collapsed ? styles.headerCollapsed : ''}`}>
       <div className={styles.header__left}>
         {/* Hamburger */}
         <button

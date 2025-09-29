@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { detectLocale, isValidLocale, DEFAULT_LOCALE } from '@/lib/i18n';
+import { detectLocale, isValidLocale } from '@/lib/i18n';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

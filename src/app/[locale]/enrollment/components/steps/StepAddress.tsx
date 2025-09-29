@@ -20,14 +20,14 @@ export interface Step2FormData {
   estado: string; // sigla (ex: SP)
 }
 
-const schema = yup.object({
+const schema: yup.ObjectSchema<Step2FormData> = yup.object({
   cep: yup
     .string()
     .required("Informe o CEP")
     .matches(/^\d{5}-?\d{3}$/, "CEP inválido"),
   endereco: yup.string().required("Informe o endereço").min(3, "Endereço muito curto"),
   numero: yup.string().required("Informe o número").matches(/^\d+$/, "Somente números"),
-  complemento: yup.string().nullable(),
+  complemento: yup.string().nullable().optional(),
   bairro: yup.string().required("Informe o bairro"),
   cidade: yup.string().required("Informe a cidade"),
   estado: yup.string().required("Informe o estado (UF)"),

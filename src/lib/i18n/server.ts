@@ -11,10 +11,10 @@ export function getTranslator(locale: Locale) {
   
   if (!localeMessages) {
     console.warn(`Messages not found for locale: ${validLocale}, falling back to ${DEFAULT_LOCALE}`);
-    return createTranslator(messages[DEFAULT_LOCALE]);
+    return createTranslator(messages[DEFAULT_LOCALE] as unknown as Parameters<typeof createTranslator>[0]);
   }
   
-  return createTranslator(localeMessages);
+  return createTranslator(localeMessages as unknown as Parameters<typeof createTranslator>[0]);
 }
 
 // Server-side function to get locale from params

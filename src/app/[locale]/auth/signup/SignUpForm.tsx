@@ -17,7 +17,8 @@ export default function SignUpForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //alert(`CPF enviado: ${cpfFormatted} (somente dígitos: ${cpfDigits})`);
+    // TODO: Implement actual signup logic
+    console.log(`CPF enviado: ${cpfFormatted} (somente dígitos: ${cpfDigits})`);
 
     router.push("/pt/auth/signup/create-password")
   };
@@ -25,7 +26,7 @@ export default function SignUpForm() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <label htmlFor="cpf" className="form__label">
-        {t.auth.signup.email()}
+        {t.auth.signup.cpfPlaceholder()}
       </label>
       <InputCPF
         name="cpf"

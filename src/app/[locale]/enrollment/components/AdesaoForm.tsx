@@ -13,8 +13,14 @@ import styles from "./AdesaoForm.module.scss";
 import { useRouter } from "next/navigation";
 
 export interface FormData {
-  step1: object;
+  step1: Record<string, unknown>;
+  step2?: Record<string, unknown>;
+  step3?: Record<string, unknown>;
+  step4?: Record<string, unknown>;
+  step5?: Record<string, unknown>;
 }
+
+export type StepData = Record<string, unknown>;
 
 export default function AdesaoForm() {
   const { translator } = useI18n();
@@ -26,7 +32,7 @@ export default function AdesaoForm() {
     step1: {},
   });
 
-  const handleNext = (stepData: any) => {
+  const handleNext = (stepData: StepData) => {
     setData((prev) => ({
       ...prev,
       [`step${currentStep}`]: stepData,
@@ -38,7 +44,7 @@ export default function AdesaoForm() {
     setCurrentStep((prev) => prev - 1);
   };
 
-  const handleSubmitAll = (finalData: any) => {
+  const handleSubmitAll = (finalData: FormData) => {
     console.log("Enviando dados para o backend:", finalData);
     // Ex: await api.post("/adesao", finalData);
   };
@@ -59,17 +65,17 @@ export default function AdesaoForm() {
             </div>
           </div>
         )}
-        {currentStep === 1 && <StepPersonalInfo onNext={handleNext} />}
+        {currentStep === 1 && <StepPersonalInfo onNext={(data) => handleNext(data as unknown as StepData)} />}
        
-        {currentStep === 2 && <StepAddress onNext={handleNext} onBack={handleBack} />}
+        {currentStep === 2 && <StepAddress onNext={(data) => handleNext(data as unknown as StepData)} onBack={handleBack} />}
          
-        {currentStep === 3 && <StepContribution onNext={handleNext} onBack={handleBack} />}
+        {currentStep === 3 && <StepContribution onNext={(data) => handleNext(data as unknown as StepData)} onBack={handleBack} />}
     
         {currentStep === 4   && (
           <StepSecurity
             onNext={(finalStepData) => {
               console.log("test")
-              const allData = { ...data, step5: finalStepData };
+              const allData = { ...data, step5: finalStepData as Record<string, unknown> };
               handleSubmitAll(allData);
               setCurrentStep(5);
             }}

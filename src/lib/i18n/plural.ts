@@ -21,13 +21,13 @@ export function createPluralTranslator(translator: Translator, locale: string) {
     params?: Record<string, string | number>
   ): string {
     const pluralForm = getPluralForm(locale, count);
-    const pluralKey = `${baseKey}_${pluralForm}` as any;
+    const pluralKey = `${baseKey}_${pluralForm}` as K;
     
     try {
       return translator.t(pluralKey, { ...params, count });
     } catch {
       // Fallback to other form if one form doesn't exist
-      const fallbackKey = `${baseKey}_other` as any;
+      const fallbackKey = `${baseKey}_other` as K;
       return translator.t(fallbackKey, { ...params, count });
     }
   };
